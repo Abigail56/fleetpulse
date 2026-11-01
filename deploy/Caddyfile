@@ -1,0 +1,14 @@
+# Caddy gets and renews HTTPS certificates by itself, once the domains point at this server.
+{$APP_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+{$API_DOMAIN} {
+	encode zstd gzip
+	# Handles the live map's WebSocket too. The API refuses anything over 12 MB itself.
+	request_body {
+		max_size 13MB
+	}
+	reverse_proxy api:8000
+}

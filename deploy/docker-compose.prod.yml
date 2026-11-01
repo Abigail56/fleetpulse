@@ -1,0 +1,163 @@
+# Production stack. See docs/operations.md. Run from the repository root:
+#   docker compose --env-file deploy/.env.production -f deploy/docker-compose.prod.yml up -d --build
+#
+# Only the reverse proxy is published. Everything else can only be reached inside this network,
+# which is what makes trusting its forwarded headers safe.
+name: fleetpulse-prod
+
+x-backend: &backend
+  build: ../backend
+  restart: unless-stopped
+  environment: &backend-env
+    FLEETPULSE_ENVIRONMENT: ${FLEETPULSE_ENVIRONMENT:-production}
+    FLEETPULSE_LOG_LEVEL: ${FLEETPULSE_LOG_LEVEL:-INFO}
+    FLEETPULSE_DATABASE_URL: postgresql+psycopg://fleetpulse_app:${FLEETPULSE_APP_DB_PASSWORD:?set in .env.production}@db:5432/${POSTGRES_DB:-fleetpulse}
+    FLEETPULSE_APP_DB_PASSWORD: ${FLEETPULSE_APP_DB_PASSWORD}
+    FLEETPULSE_REDIS_URL: redis://:${REDIS_PASSWORD:?set in .env.production}@redis:6379/0
+    FLEETPULSE_CORS_ORIGINS: '["https://${APP_DOMAIN:?set in .env.production}${PUBLIC_PORT_SUFFIX:-}"]'
+    FLEETPULSE_FRONTEND_BASE_URL: https://${APP_DOMAIN}${PUBLIC_PORT_SUFFIX:-}
+    FLEETPULSE_API_PUBLIC_URL: https://${API_DOMAIN:?set in .env.production}${PUBLIC_PORT_SUFFIX:-}
+    FLEETPULSE_JWT_SECRET: ${FLEETPULSE_JWT_SECRET:?set in .env.production}
+    FLEETPULSE_SMTP_HOST: ${FLEETPULSE_SMTP_HOST:?set in .env.production}
+    FLEETPULSE_SMTP_PORT: ${FLEETPULSE_SMTP_PORT:-587}
+    FLEETPULSE_SMTP_USERNAME: ${FLEETPULSE_SMTP_USERNAME:-}
+    FLEETPULSE_SMTP_PASSWORD: ${FLEETPULSE_SMTP_PASSWORD:-}
+    FLEETPULSE_SMTP_STARTTLS: ${FLEETPULSE_SMTP_STARTTLS:-true}
+    FLEETPULSE_EMAIL_FROM: ${FLEETPULSE_EMAIL_FROM:?set in .env.production}
+    FLEETPULSE_CONTACT_INBOX_EMAIL: ${FLEETPULSE_CONTACT_INBOX_EMAIL:?set in .env.production}
+    FLEETPULSE_STORAGE_ENDPOINT_URL: ${FLEETPULSE_STORAGE_ENDPOINT_URL:?set in .env.production}
+    FLEETPULSE_STORAGE_PUBLIC_URL: ${FLEETPULSE_STORAGE_PUBLIC_URL:-}
+    FLEETPULSE_STORAGE_BUCKET: ${FLEETPULSE_STORAGE_BUCKET:?set in .env.production}
+    FLEETPULSE_STORAGE_REGION: ${FLEETPULSE_STORAGE_REGION:-us-east-1}
+    FLEETPULSE_STORAGE_ACCESS_KEY: ${FLEETPULSE_STORAGE_ACCESS_KEY:?set in .env.production}
+    FLEETPULSE_STORAGE_SECRET_KEY: ${FLEETPULSE_STORAGE_SECRET_KEY:?set in .env.production}
+    FLEETPULSE_GOOGLE_CLIENT_ID: ${FLEETPULSE_GOOGLE_CLIENT_ID:-}
+    FLEETPULSE_GOOGLE_CLIENT_SECRET: ${FLEETPULSE_GOOGLE_CLIENT_SECRET:-}
+    FLEETPULSE_PAYSTACK_SECRET_KEY: ${FLEETPULSE_PAYSTACK_SECRET_KEY:-}
+    FLEETPULSE_BILLING_CURRENCY: ${FLEETPULSE_BILLING_CURRENCY:-USD}
+    FLEETPULSE_BILLING_ENFORCED: ${FLEETPULSE_BILLING_ENFORCED:-false}
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-fleetpulse}
+      POSTGRES_USER: ${POSTGRES_USER:-fleetpulse}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env.production}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-fleetpulse} -d ${POSTGRES_DB:-fleetpulse}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:8.0-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PASSWORD\" --no-auth-warning ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+  # Runs once for each release, before the API starts. Only this has the owner account.
+  migrate:
+    <<: *backend
+    restart: "no"
+    command: ["sh", "-c", "alembic upgrade head && python -m app.db.provision_app_role"]
+    environment:
+      <<: *backend-env
+      FLEETPULSE_MIGRATION_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-fleetpulse}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-fleetpulse}
+
+  api:
+    <<: *backend
+    command:
+      - uvicorn
+      - app.main:app
+      - --host=0.0.0.0
+      - --port=8000
+      - --workers=${API_WORKERS:-2}
+      # Client addresses come from the proxy, so rate limits see people rather than the proxy.
+      - --proxy-headers
+      - --forwarded-allow-ips=*
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://127.0.0.1:8000/api/v1/health/ready', timeout=4)"]
+      interval: 10s
+      timeout: 6s
+      retries: 12
+      start_period: 15s
+
+  worker:
+    <<: *backend
+    command: ["celery", "-A", "app.worker.celery_app", "worker", "--loglevel=INFO", "--concurrency=2"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  # Exactly one. Two would run every scheduled job twice.
+  beat:
+    <<: *backend
+    command: ["celery", "-A", "app.worker.celery_app", "beat", "--loglevel=INFO", "--schedule=/tmp/celerybeat-schedule"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  web:
+    build:
+      context: ../frontend
+      args:
+        NEXT_PUBLIC_API_BASE_URL: https://${API_DOMAIN}${PUBLIC_PORT_SUFFIX:-}
+        NEXT_PUBLIC_SITE_URL: https://${APP_DOMAIN}${PUBLIC_PORT_SUFFIX:-}
+        NEXT_PUBLIC_MAP_STYLE_URL: ${NEXT_PUBLIC_MAP_STYLE_URL:-https://tiles.openfreemap.org/styles/dark}
+        NEXT_PUBLIC_LEGAL_ENTITY: ${NEXT_PUBLIC_LEGAL_ENTITY:-}
+        NEXT_PUBLIC_LEGAL_CONTACT_EMAIL: ${NEXT_PUBLIC_LEGAL_CONTACT_EMAIL:-}
+        NEXT_PUBLIC_LEGAL_ADDRESS: ${NEXT_PUBLIC_LEGAL_ADDRESS:-}
+        NEXT_PUBLIC_LEGAL_GOVERNING_LAW: ${NEXT_PUBLIC_LEGAL_GOVERNING_LAW:-}
+        NEXT_PUBLIC_LEGAL_REVIEWED: ${NEXT_PUBLIC_LEGAL_REVIEWED:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/login').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 6s
+      retries: 12
+      start_period: 10s
+
+  proxy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN}
+      API_DOMAIN: ${API_DOMAIN}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      api:
+        condition: service_healthy
+      web:
+        condition: service_healthy
+
+volumes:
+  db_data:
+  redis_data:
+  caddy_data:
+  caddy_config:

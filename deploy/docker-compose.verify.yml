@@ -1,0 +1,22 @@
+# Lets the production stack run on one machine, with HTTPS, to check it before a real deployment.
+# It stands in a certificate, a mail catcher and storage, so passing this isn't a real deployment.
+services:
+  proxy:
+    ports: !override
+      - "127.0.0.1:8443:443"
+    volumes: !override
+      - ./Caddyfile.verify:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports:
+      - "127.0.0.1:8127:8025"
+  storage:
+    image: chrislusf/seaweedfs:3.97
+    command: ["server", "-dir=/data", "-s3", "-s3.port=8333", "-master.volumeSizeLimitMB=256"]
+    environment:
+      AWS_ACCESS_KEY_ID: ${FLEETPULSE_STORAGE_ACCESS_KEY}
+      AWS_SECRET_ACCESS_KEY: ${FLEETPULSE_STORAGE_SECRET_KEY}
+    ports:
+      - "127.0.0.1:9110:8333"

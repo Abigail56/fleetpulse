@@ -1,0 +1,137 @@
+name: fleetpulse
+
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set in .env}
+      POSTGRES_USER: ${POSTGRES_USER:?set in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+    ports:
+      - "127.0.0.1:5440:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:8.0-alpine
+    ports:
+      - "127.0.0.1:6390:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Catches all outgoing development email. Inbox: http://localhost:8027
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports:
+      - "127.0.0.1:1027:1025"
+      - "127.0.0.1:8027:8025"
+
+  # Private, S3-compatible file storage for development. The login is local-only.
+  storage:
+    image: chrislusf/seaweedfs:3.97
+    command: ["server", "-dir=/data", "-s3", "-s3.port=8333", "-master.volumeSizeLimitMB=1024"]
+    environment:
+      AWS_ACCESS_KEY_ID: ${FLEETPULSE_STORAGE_ACCESS_KEY:-fleetpulse-local}
+      AWS_SECRET_ACCESS_KEY: ${FLEETPULSE_STORAGE_SECRET_KEY:-fleetpulse-local-secret}
+    ports:
+      - "127.0.0.1:9010:8333"
+    volumes:
+      - storage_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8333/status || nc -z 127.0.0.1 8333"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  # API and worker containers are optional in development: `--profile app`.
+  # Migrations run as their own step, never as part of API startup.
+  migrate:
+    profiles: ["app"]
+    build: ./backend
+    command: ["sh", "-c", "alembic upgrade head && python -m app.db.provision_app_role"]
+    environment:
+      <<: &backend-env
+        FLEETPULSE_ENVIRONMENT: development
+        FLEETPULSE_LOG_LEVEL: INFO
+        FLEETPULSE_DATABASE_URL: postgresql+psycopg://fleetpulse_app:${FLEETPULSE_APP_DB_PASSWORD:?set in .env}@db:5432/${POSTGRES_DB}
+        FLEETPULSE_REDIS_URL: redis://redis:6379/0
+        FLEETPULSE_CORS_ORIGINS: '["http://localhost:3210", "http://localhost:3211"]'
+        FLEETPULSE_FRONTEND_BASE_URL: http://localhost:3210
+        FLEETPULSE_JWT_SECRET: ${FLEETPULSE_JWT_SECRET:?set in .env}
+        FLEETPULSE_STORAGE_ENDPOINT_URL: http://storage:8333
+        FLEETPULSE_STORAGE_PUBLIC_URL: http://localhost:9010
+        FLEETPULSE_STORAGE_BUCKET: fleetpulse-files
+        FLEETPULSE_STORAGE_ACCESS_KEY: ${FLEETPULSE_STORAGE_ACCESS_KEY:-fleetpulse-local}
+        FLEETPULSE_STORAGE_SECRET_KEY: ${FLEETPULSE_STORAGE_SECRET_KEY:-fleetpulse-local-secret}
+        FLEETPULSE_PAYSTACK_SECRET_KEY: ${FLEETPULSE_PAYSTACK_SECRET_KEY:-}
+        FLEETPULSE_BILLING_CURRENCY: ${FLEETPULSE_BILLING_CURRENCY:-USD}
+        FLEETPULSE_BILLING_ENFORCED: ${FLEETPULSE_BILLING_ENFORCED:-false}
+        # Only the full browser test run raises this. See "Checks" in the README.
+        FLEETPULSE_AUTH_REQUESTS_PER_HOUR_PER_IP: ${FLEETPULSE_AUTH_REQUESTS_PER_HOUR_PER_IP:-30}
+        FLEETPULSE_SMTP_HOST: mailpit
+        FLEETPULSE_SMTP_PORT: "1025"
+        FLEETPULSE_CONTACT_INBOX_EMAIL: contact@fleetpulse.local
+        FLEETPULSE_GOOGLE_CLIENT_ID: ${FLEETPULSE_GOOGLE_CLIENT_ID:-}
+        FLEETPULSE_GOOGLE_CLIENT_SECRET: ${FLEETPULSE_GOOGLE_CLIENT_SECRET:-}
+        FLEETPULSE_API_PUBLIC_URL: http://localhost:8010
+        FLEETPULSE_GPS_SIMULATOR_ENABLED: ${FLEETPULSE_GPS_SIMULATOR_ENABLED:-false}
+      # Only this one-time step gets the owner account.
+      FLEETPULSE_MIGRATION_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    profiles: ["app"]
+    build: ./backend
+    environment: *backend-env
+    ports:
+      - "127.0.0.1:8010:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/api/v1/health', timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  worker:
+    profiles: ["app"]
+    build: ./backend
+    command: ["celery", "-A", "app.worker.celery_app", "worker", "--loglevel=INFO", "--concurrency=2"]
+    environment: *backend-env
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  # Exactly one: a second copy would run every scheduled task twice.
+  beat:
+    profiles: ["app"]
+    build: ./backend
+    command: ["celery", "-A", "app.worker.celery_app", "beat", "--loglevel=INFO", "--schedule=/tmp/celerybeat-schedule"]
+    environment: *backend-env
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+volumes:
+  db_data:
+  redis_data:
+  storage_data:

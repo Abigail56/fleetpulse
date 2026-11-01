@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: false;
+}
+
+@plugin "daisyui/theme" {
+  name: "fleetpulse";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: oklch(99% 0.004 95);
+  --color-base-200: oklch(96.5% 0.007 95);
+  --color-base-300: oklch(90.5% 0.01 95);
+  --color-base-content: oklch(23% 0.025 195);
+  --color-primary: oklch(36% 0.065 195);
+  --color-primary-content: oklch(98% 0.005 195);
+  --color-secondary: oklch(46% 0.03 195);
+  --color-secondary-content: oklch(98% 0.005 195);
+  --color-accent: oklch(72% 0.17 58);
+  --color-accent-content: oklch(21% 0.04 58);
+  --color-neutral: oklch(23% 0.03 195);
+  --color-neutral-content: oklch(95% 0.008 195);
+  --color-info: oklch(46% 0.1 240);
+  --color-info-content: oklch(98% 0.005 240);
+  --color-success: oklch(45% 0.11 155);
+  --color-success-content: oklch(98% 0.01 155);
+  --color-warning: oklch(80% 0.15 80);
+  --color-warning-content: oklch(24% 0.05 80);
+  --color-error: oklch(47% 0.17 27);
+  --color-error-content: oklch(98% 0.01 27);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "fleetpulse-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: oklch(19% 0.018 195);
+  --color-base-200: oklch(23% 0.02 195);
+  --color-base-300: oklch(31% 0.022 195);
+  --color-base-content: oklch(93% 0.008 195);
+  --color-primary: oklch(79% 0.09 190);
+  --color-primary-content: oklch(20% 0.03 195);
+  --color-secondary: oklch(72% 0.03 195);
+  --color-secondary-content: oklch(20% 0.02 195);
+  --color-accent: oklch(76% 0.16 60);
+  --color-accent-content: oklch(21% 0.04 58);
+  --color-neutral: oklch(13% 0.015 195);
+  --color-neutral-content: oklch(93% 0.008 195);
+  --color-info: oklch(75% 0.1 240);
+  --color-info-content: oklch(20% 0.03 240);
+  --color-success: oklch(76% 0.13 155);
+  --color-success-content: oklch(20% 0.03 155);
+  --color-warning: oklch(82% 0.14 80);
+  --color-warning-content: oklch(24% 0.05 80);
+  --color-error: oklch(73% 0.15 27);
+  --color-error-content: oklch(20% 0.04 27);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme inline {
+  --font-sans: var(--font-public-sans);
+  --font-display: var(--font-archivo);
+  --font-mono: var(--font-plex-mono);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Fleet status colours: one meaning everywhere, always paired with a text label. */
+:root {
+  --fleet-moving: oklch(72% 0.17 155);
+  --fleet-idle: oklch(70% 0.012 195);
+  --fleet-stale: oklch(79% 0.15 80);
+  --fleet-offline: oklch(60% 0.12 25);
+  --fleet-unknown: oklch(72% 0.09 235);
+}
+
+.fleet-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+.fleet-dot--moving { background: var(--fleet-moving); }
+.fleet-dot--idle { background: var(--fleet-idle); }
+.fleet-dot--stale { background: var(--fleet-stale); }
+.fleet-dot--offline { background: var(--fleet-offline); }
+.fleet-dot--unknown { background: var(--fleet-unknown); }
+.fleet-dot--no_position { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
+
+/* Dark in both site themes: it's a map of the product's operating view. */
+.fleet-map {
+  background: #0e1a1c;
+  color: var(--color-neutral-content);
+}
+.fleet-map .maplibregl-ctrl-attrib,
+.fleet-map .maplibregl-ctrl-attrib.maplibregl-compact-show {
+  background-color: rgb(14 26 28 / 0.9) !important;
+  color: #c7d0d0;
+  font-size: 10px;
+}
+.fleet-map .maplibregl-ctrl-attrib a { color: #e8eeee; }
+.fleet-map .maplibregl-ctrl-attrib-button { filter: invert(1); }
+.fleet-map .maplibregl-ctrl-group {
+  background: #1b2b2e;
+  box-shadow: none;
+  border: 1px solid #33474a;
+}
+.fleet-map .maplibregl-ctrl-group button + button { border-top-color: #33474a; }
+.fleet-map .maplibregl-ctrl-icon { filter: invert(1); }
+.fleet-map .maplibregl-popup-content {
+  background: #1b2b2e;
+  color: #e8eeee;
+  border: 1px solid #33474a;
+  border-radius: var(--radius-field);
+  box-shadow: none;
+  padding: 0.6rem 1.5rem 0.6rem 0.7rem;
+}
+.fleet-map .maplibregl-popup-tip { border-top-color: #33474a; border-bottom-color: #33474a; }
+.fleet-map .maplibregl-popup-close-button { color: #e8eeee; width: 1.5rem; height: 1.5rem; }
+.fleet-popup { font-size: 12px; line-height: 1.45; }
+.fleet-popup p { margin: 0; }
+.fleet-popup__title { font-weight: 600; margin-bottom: 0.25rem !important; }
+.fleet-popup span { opacity: 0.75; }
+
+.fleet-marker {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  --fleet-colour: var(--fleet-idle);
+}
+.fleet-marker--moving { --fleet-colour: var(--fleet-moving); }
+.fleet-marker--stale { --fleet-colour: var(--fleet-stale); }
+.fleet-marker--offline { --fleet-colour: var(--fleet-offline); }
+.fleet-marker--selected { z-index: 2; }
+.fleet-marker:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 9999px; }
+.fleet-marker__dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: var(--fleet-colour);
+  border: 2px solid #0e1a1c;
+}
+.fleet-marker__dot svg {
+  width: 11px;
+  height: 11px;
+  fill: #0e1a1c;
+  transform: rotate(var(--heading, 0deg));
+}
+/* Stopped vehicles aren't heading anywhere, so they show a plain dot. */
+.fleet-marker:not(.fleet-marker--moving) .fleet-marker__dot svg { display: none; }
+.fleet-marker__label {
+  position: absolute;
+  left: 26px;
+  top: 3px;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: rgb(14 26 28 / 0.85);
+  color: #e8eeee;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+.fleet-marker--selected .fleet-marker__dot { outline: 2px solid #fff; outline-offset: 1px; }
+.fleet-marker--selected .fleet-marker__label { background: #fff; color: #0e1a1c; font-weight: 500; }
+.fleet-marker--moving .fleet-marker__dot::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  border: 2px solid var(--fleet-colour);
+  animation: fleet-pulse 2.4s ease-out infinite;
+}
+@keyframes fleet-pulse {
+  from { opacity: 0.7; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fleet-marker--moving .fleet-marker__dot::after { animation: none; opacity: 0; }
+}
+
+.fleet-fallback--moving { color: var(--fleet-moving); }
+.fleet-fallback--idle { color: var(--fleet-idle); }
+.fleet-fallback--stale { color: var(--fleet-stale); }
+.fleet-fallback--offline { color: var(--fleet-offline); }
+.fleet-fallback polyline { stroke: currentColor; }
+.fleet-fallback circle { fill: currentColor; }

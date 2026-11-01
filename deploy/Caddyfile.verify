@@ -1,0 +1,15 @@
+# The same routing as the real one, with a locally issued certificate.
+{$APP_DOMAIN} {
+	tls internal
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+{$API_DOMAIN} {
+	tls internal
+	encode zstd gzip
+	request_body {
+		max_size 13MB
+	}
+	reverse_proxy api:8000
+}

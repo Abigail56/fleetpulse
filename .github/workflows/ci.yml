@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      db:
+        image: postgis/postgis:17-3.5
+        env:
+          POSTGRES_DB: fleetpulse
+          POSTGRES_USER: fleetpulse
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ["5440:5432"]
+        options: >-
+          --health-cmd "pg_isready -U fleetpulse -d fleetpulse"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      redis:
+        image: redis:8.0-alpine
+        ports: ["6390:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      FLEETPULSE_ENVIRONMENT: test
+      FLEETPULSE_DATABASE_URL: postgresql+psycopg://fleetpulse_app:ci-only-app-password@localhost:5440/fleetpulse
+      FLEETPULSE_MIGRATION_DATABASE_URL: postgresql+psycopg://fleetpulse:ci-only-password@localhost:5440/fleetpulse
+      FLEETPULSE_REDIS_URL: redis://localhost:6390/0
+      FLEETPULSE_JWT_SECRET: ci-only-signing-key-not-used-anywhere-else
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.13.5"
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy app tests
+      - run: uv run pytest
+      # A service container can't be given the command this needs.
+      - name: Start file storage
+        run: |
+          docker run -d --name storage -p 9010:8333 \
+            -e AWS_ACCESS_KEY_ID=fleetpulse-local \
+            -e AWS_SECRET_ACCESS_KEY=fleetpulse-local-secret \
+            chrislusf/seaweedfs:3.97 server -dir=/data -s3 -s3.port=8333
+          timeout 60 sh -c 'until curl -s -o /dev/null http://localhost:9010/; do sleep 2; done'
+      - run: uv run alembic upgrade head
+      - run: uv run python -m app.db.provision_app_role
+      - run: uv run pytest -m integration
+      - run: docker build -t fleetpulse-backend .
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_API_BASE_URL: http://localhost:8010
+          NEXT_PUBLIC_SITE_URL: http://localhost:3210
+      - run: npm run e2e:build
+        env:
+          NEXT_PUBLIC_API_BASE_URL: http://localhost:8010
+          NEXT_PUBLIC_SITE_URL: http://localhost:3211
+      - run: docker build --build-arg NEXT_PUBLIC_API_BASE_URL=https://api.example.com --build-arg NEXT_PUBLIC_SITE_URL=https://app.example.com -t fleetpulse-web .
+      - run: npx playwright install --with-deps chromium firefox
+      - run: npm run e2e
+      - run: npm run e2e:dev
+
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: The production stack's configuration is valid
+        run: |
+          sed -e 's/=$/=ci-placeholder/' -e 's/^FLEETPULSE_SMTP_PORT=.*/FLEETPULSE_SMTP_PORT=587/' \
+            deploy/.env.production.example > deploy/.env.production
+          docker compose --env-file deploy/.env.production -f deploy/docker-compose.prod.yml config -q
+      - run: sh -n deploy/backup.sh && sh -n deploy/restore.sh
