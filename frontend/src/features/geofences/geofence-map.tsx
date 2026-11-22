@@ -3,9 +3,10 @@
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import * as maplibregl from "maplibre-gl";
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
-import { STYLE_URL } from "../fleet-map/fleet-map";
+import { getFleetMapStyleUrl } from "../fleet-map/map-style";
 
 const FILL_COLOUR = "#e6b34a";
 const FIT_PADDING = 48;
@@ -36,8 +37,11 @@ export default function GeofenceMap({
   reference: Point[];
   onPick?: (latitude: number, longitude: number) => void;
 }) {
+  const { resolvedTheme } = useTheme();
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const appliedStyleUrl = useRef("");
+  const boundaryRef = useRef(boundary);
   const onPickRef = useRef(onPick);
   const fitted = useRef(false);
   const [ready, setReady] = useState(false);
@@ -48,10 +52,14 @@ export default function GeofenceMap({
   }, [onPick]);
 
   useEffect(() => {
+    boundaryRef.current = boundary;
+  }, [boundary]);
+
+  useEffect(() => {
     if (!container.current) return;
     const instance = new maplibregl.Map({
       container: container.current,
-      style: STYLE_URL,
+      style: getFleetMapStyleUrl("light"),
       center: [0, 15],
       zoom: 1,
       cooperativeGestures: true,
@@ -63,6 +71,7 @@ export default function GeofenceMap({
     instance.touchZoomRotate.disableRotation();
     instance.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
     map.current = instance;
+    appliedStyleUrl.current = getFleetMapStyleUrl("light");
     let loaded = false;
     instance.on("error", (event) => {
       console.warn("geofence_map_error:", event.error?.message);
@@ -73,22 +82,27 @@ export default function GeofenceMap({
         instance.addImage(id, { width: 1, height: 1, data: new Uint8Array(4) });
       }
     });
-    instance.on("load", () => {
+    instance.on("style.load", () => {
       loaded = true;
-      instance.addSource("geofence", { type: "geojson", data: shape([]) });
-      instance.addLayer({
-        id: "geofence-fill",
-        type: "fill",
-        source: "geofence",
-        filter: ["==", ["geometry-type"], "Polygon"],
-        paint: { "fill-color": FILL_COLOUR, "fill-opacity": 0.25 },
-      });
-      instance.addLayer({
-        id: "geofence-line",
-        type: "line",
-        source: "geofence",
-        paint: { "line-color": FILL_COLOUR, "line-width": 2 },
-      });
+      if (!instance.getSource("geofence")) {
+        instance.addSource("geofence", {
+          type: "geojson",
+          data: shape(boundaryRef.current),
+        });
+        instance.addLayer({
+          id: "geofence-fill",
+          type: "fill",
+          source: "geofence",
+          filter: ["==", ["geometry-type"], "Polygon"],
+          paint: { "fill-color": FILL_COLOUR, "fill-opacity": 0.25 },
+        });
+        instance.addLayer({
+          id: "geofence-line",
+          type: "line",
+          source: "geofence",
+          paint: { "line-color": FILL_COLOUR, "line-width": 2 },
+        });
+      }
       setReady(true);
     });
     instance.on("click", (event) => onPickRef.current?.(event.lngLat.lat, event.lngLat.lng));
@@ -99,6 +113,15 @@ export default function GeofenceMap({
       setReady(false);
     };
   }, []);
+
+  useEffect(() => {
+    const instance = map.current;
+    const styleUrl = getFleetMapStyleUrl(resolvedTheme === "dark" ? "dark" : "light");
+    if (!instance || styleUrl === appliedStyleUrl.current) return;
+    appliedStyleUrl.current = styleUrl;
+    setReady(false);
+    instance.setStyle(styleUrl);
+  }, [resolvedTheme]);
 
   useEffect(() => {
     if (!ready || !map.current) return;
@@ -114,7 +137,7 @@ export default function GeofenceMap({
 
   if (failed) {
     return (
-      <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-neutral-content">
+      <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-base-content">
         The map couldn&apos;t load. You can still type coordinates.
       </div>
     );

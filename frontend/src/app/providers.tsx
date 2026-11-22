@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
+import { useTheme } from "next-themes";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -18,10 +19,11 @@ function getQueryClient() {
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const { resolvedTheme } = useTheme();
   return (
     <QueryClientProvider client={getQueryClient()}>
       {children}
-      <Toaster position="bottom-right" theme="system" />
+      <Toaster position="bottom-right" theme={resolvedTheme === "dark" ? "dark" : "light"} />
     </QueryClientProvider>
   );
 }

@@ -2,6 +2,16 @@
 
 No tracking vendor is connected yet. Any device platform or script can send positions through this generic feed, and a vendor with its own format gets an adapter in `backend/app/integrations/gps/`.
 
+## Tracking when cellular service is unavailable
+
+FleetPulse is software; it does not include or manufacture a tracker to install in a vehicle. Each vehicle needs a compatible GPS/GNSS tracker and an active data connection to report live positions. For a pilot, an OBD-II tracker is easy to install in a compatible vehicle. For a mixed or heavy-vehicle fleet, ask an installer about a hardwired tracker suitable for the vehicle's 12/24 V system, with ignition sensing and backup power where needed.
+
+To keep a route when the vehicle has no cellular service, choose a tracker that has **on-device store-and-forward memory**. It must keep GPS fixes with their original timestamps while offline and automatically upload the buffered fixes when its data connection returns. A GPS receiver can determine positions without cellular service, but FleetPulse cannot receive or display those positions live during the outage. Satellite messaging is not required for later route history; it is only an option if remote updates during a cellular outage are a separate requirement.
+
+FleetPulse accepts timestamped backfill through the same feed. Positions up to 30 days old can be added to history; older positions are rejected. Send batches of at most 500 positions and 1 MB per request, inspect the per-position result, and retry `429` or `5xx` responses. Re-sending accepted positions is safe: duplicates are ignored. A backfilled position does not replace a newer live position or clear an offline alert; the alert clears when a newer fix arrives. Historical fixes can appear in route history after upload, but geofence crossings are not reconstructed for late deliveries and were therefore not delivered as real-time alerts.
+
+Before buying hardware, confirm with the vendor: its offline storage capacity at the intended reporting interval, whether it preserves original timestamps, automatic backfill behavior, supported vehicle voltage/installation, and cellular coverage and data costs where the fleet operates. Test a real tracker by disconnecting cellular service, driving a known route, reconnecting, and comparing the uploaded route and timestamps with the tracker's own log. This has not yet been tested with a real device.
+
 ## Setting up
 
 1. An owner or administrator creates an integration on the **Tracking** page and copies its key, which is shown only once.

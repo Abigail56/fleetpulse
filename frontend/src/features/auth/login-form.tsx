@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Alert } from "@/components/ui/alert";
@@ -16,6 +16,7 @@ import { safeRedirectPath } from "@/lib/safe-redirect";
 import { CURRENT_USER_KEY, login, resendVerification } from "./api";
 import { GoogleButton } from "./google-button";
 import { type LoginValues, loginSchema } from "./schemas";
+import { useCurrentUser } from "./use-current-user";
 import { useApiFormError } from "./use-api-form-error";
 
 const GOOGLE_ERRORS: Record<string, string> = {
@@ -28,6 +29,8 @@ export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
+  const returnPath = safeRedirectPath(searchParams.get("next"));
+  const currentUser = useCurrentUser(searchParams.has("next"));
   const [resent, setResent] = useState(false);
   const {
     register,
@@ -43,6 +46,10 @@ export function LoginForm() {
   const { formError, clearFormError, handleApiError } = useApiFormError(setError);
   const googleError = GOOGLE_ERRORS[searchParams.get("error") ?? ""];
 
+  useEffect(() => {
+    if (currentUser.isSuccess && currentUser.data) router.replace(returnPath);
+  }, [currentUser.data, currentUser.isSuccess, returnPath, router]);
+
   async function onSubmit(values: LoginValues) {
     clearFormError();
     setResent(false);
@@ -51,7 +58,7 @@ export function LoginForm() {
       queryClient.setQueryData(CURRENT_USER_KEY, user);
       // Don't leave the password in the form while navigating away.
       reset();
-      router.replace(safeRedirectPath(searchParams.get("next")));
+      router.replace(returnPath);
     } catch (error) {
       handleApiError(error);
     }

@@ -76,6 +76,18 @@ FLEETPULSE_GOOGLE_CLIENT_SECRET=your-client-secret
 
 In production, register the production callback instead and set `FLEETPULSE_API_PUBLIC_URL` to the API's https address.
 
+## Geoapify maps (vehicle tracking)
+
+The live tracking and trip history maps use MapLibre GL JS with Geoapify's `osm-bright` map style. Create a Geoapify API key, restrict it to your app's website referrers in Geoapify, and put it in `frontend/.env.local`:
+
+```bash
+NEXT_PUBLIC_GEOAPIFY_API_KEY=your-restricted-browser-key
+```
+
+The key is included in the frontend build, so changing it requires rebuilding the web app. The tracking page uses real positions received from the API; a real GPS device or vendor still needs to send them. Without a key, the vehicle list remains available and the map explains how to configure Geoapify.
+
+The public landing-page map is a separate, labelled demonstration using simulated data. It uses MapLibre when WebGL2 is available and an interactive Leaflet raster-map fallback otherwise; it does not show real customer or vehicle data.
+
 ## Local ports
 
 | Service | Port |

@@ -154,7 +154,7 @@ test.describe("full journey against the real API", () => {
     await expect(page.getByText(/measured from GPS positions/)).toBeVisible();
     await expect(page.getByText(/^11\.\d+ km/)).toBeVisible();
     await expect(page.getByText(/2 reported positions/)).toBeVisible();
-    await expect(page.locator(".maplibregl-canvas")).toBeVisible();
+    await expect(page.getByText(/Geoapify is not configured/)).toBeVisible();
     await expect(page.getByRole("button", { name: "Cancel trip" })).toHaveCount(0);
     await expect(page.getByText("Departed by Ada Obi")).toBeVisible();
 

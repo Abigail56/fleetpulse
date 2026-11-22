@@ -461,8 +461,16 @@ def evaluate_positions(
     try:
         with db.begin_nested():
             vehicle_ids = {reading.vehicle_id for reading in readings}
-            # Reporting again ends an offline alert.
-            _resolve(db, organisation_id, AlertType.VEHICLE_OFFLINE, vehicle_ids)
+            # A tracker may backfill old fixes after reconnecting; only a newer fix proves it
+            # has started reporting again.
+            reporting_again = {
+                reading.vehicle_id
+                for reading in readings
+                if reading.vehicle_id not in previous
+                or reading.position.recorded_at > previous[reading.vehicle_id]["recorded_at"]
+            }
+            if reporting_again:
+                _resolve(db, organisation_id, AlertType.VEHICLE_OFFLINE, reporting_again)
             registrations = dict(
                 db.exec(
                     select(Vehicle.id, Vehicle.registration_number).where(

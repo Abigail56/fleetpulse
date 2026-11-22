@@ -1,7 +1,17 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { CircleAlert, TriangleAlert, Truck } from "lucide-react";
+import {
+  ArrowUpRight,
+  CircleAlert,
+  Gauge,
+  MapPinned,
+  Route,
+  TriangleAlert,
+  Truck,
+  UserRound,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 import { Alert } from "@/components/ui/alert";
@@ -10,15 +20,68 @@ import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 
 import { ALERT_REFRESH_MS, fetchAlertSummary, SUMMARY_KEY } from "@/features/alerts/api";
+import {
+  fetchSummary as fetchMaintenanceSummary,
+  MAINTENANCE_KEY,
+} from "@/features/maintenance/api";
 
 import { type DashboardSummary, fetchDashboard } from "./api";
 
-function Tile({ label, value, note }: { label: string; value: string | number; note?: string }) {
+function Tile({
+  label,
+  value,
+  note,
+  href,
+  icon: Icon,
+  accent,
+  frame,
+}: {
+  label: string;
+  value: string | number;
+  note?: string;
+  href?: string;
+  icon: LucideIcon;
+  accent: string;
+  frame: string;
+}) {
+  const content = (
+    <>
+      <div className="flex items-start justify-between gap-3">
+        <dt className="text-sm font-medium text-base-content/70">{label}</dt>
+        <span className={`grid size-9 place-items-center rounded-field ${accent}`}>
+          <Icon aria-hidden className="size-[18px]" />
+        </span>
+      </div>
+      <dd className="mt-3 font-metric text-3xl font-semibold tracking-tight tabular-nums sm:text-4xl">
+        {value}
+      </dd>
+      {note && <dd className="mt-1 text-xs text-base-content/65">{note}</dd>}
+    </>
+  );
+  const className = `group relative min-h-36 overflow-hidden rounded-box border border-base-300 border-t-4 bg-base-100 p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10 motion-reduce:transition-none ${frame}`;
+
+  const card = (
+    <dl>
+      <div>{content}</div>
+    </dl>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={`${className} block focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary`}>
+        {card}
+        <span className="sr-only">View {label.toLowerCase()}</span>
+        <ArrowUpRight
+          aria-hidden
+          className="absolute bottom-4 right-4 size-4 text-base-content/35 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+        />
+      </Link>
+    );
+  }
+
   return (
-    <div className="rounded-box border border-base-300 bg-base-100 p-4">
-      <dt className="text-sm opacity-75">{label}</dt>
-      <dd className="mt-1 font-mono text-3xl font-medium tabular-nums">{value}</dd>
-      {note && <dd className="mt-1 text-xs opacity-70">{note}</dd>}
+    <div className={className}>
+      {card}
     </div>
   );
 }
@@ -125,20 +188,49 @@ export function DashboardView({
   organisationName,
   canAddVehicles = false,
   canViewAlerts = false,
+  permissions = [],
 }: {
   organisationName: string;
   canAddVehicles?: boolean;
   canViewAlerts?: boolean;
+  permissions?: string[];
 }) {
   const summary = useQuery({ queryKey: ["dashboard"], queryFn: fetchDashboard });
+  const maintenance = useQuery({
+    queryKey: [...MAINTENANCE_KEY, "summary"],
+    queryFn: fetchMaintenanceSummary,
+    enabled: permissions.includes("maintenance.view"),
+  });
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="mt-1 opacity-75">{organisationName}</p>
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+            Fleet operations
+          </p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Dashboard</h1>
+          <p className="mt-1 text-sm text-base-content/65">{organisationName}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {permissions.includes("vehicles.view") && (
+            <ButtonLink href="/map" variant="outline" className="gap-2">
+              <MapPinned aria-hidden className="size-4" />
+              Live map
+            </ButtonLink>
+          )}
+          {canAddVehicles && (
+            <ButtonLink href="/vehicles/new" className="gap-2">
+              <Truck aria-hidden className="size-4" />
+              Add vehicle
+            </ButtonLink>
+          )}
+        </div>
       </div>
       {canViewAlerts && <AlertsNotice />}
+      {maintenance.isError && (
+        <Alert variant="error">Maintenance summary: {maintenance.error.message}</Alert>
+      )}
       {summary.isPending && (
         <div role="status" aria-label="Loading dashboard" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[0, 1, 2, 3].map((item) => (
@@ -166,32 +258,133 @@ export function DashboardView({
           appear here as vehicles and drivers are added.
         </EmptyState>
       )}
-      {summary.data && !isEmpty(summary.data) && <Figures summary={summary.data} />}
+      {summary.data && !isEmpty(summary.data) && (
+        <Figures
+          summary={summary.data}
+          permissions={permissions}
+          maintenance={maintenance.data}
+        />
+      )}
     </div>
   );
 }
 
-function Figures({ summary: { vehicles, drivers, trips } }: { summary: DashboardSummary }) {
+function Figures({
+  summary: { vehicles, drivers, trips },
+  permissions,
+  maintenance,
+}: {
+  summary: DashboardSummary;
+  permissions: string[];
+  maintenance?: {
+    overdue: number;
+    due_soon: number;
+    open_work_orders: number;
+    in_progress_work_orders: number;
+  };
+}) {
   return (
-    <>
-      <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {vehicles && <Tile label="Total vehicles" value={vehicles.total} />}
-        {vehicles?.utilisation_percent != null && (
-          <Tile
-            label="Fleet utilisation"
-            value={`${vehicles.utilisation_percent}%`}
-            note="Active vehicles as a share of all vehicles"
-          />
-        )}
-        {trips && (
-          <Tile label="Trips in progress" value={trips.in_progress} note={`${trips.scheduled} scheduled`} />
-        )}
-        {drivers && (
-          <Tile label="Drivers available" value={drivers.available} note={`of ${drivers.total} drivers`} />
-        )}
-      </dl>
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-base-content/55">
+          Fleet overview
+        </h2>
+        <section
+          aria-label="Fleet overview metrics"
+          className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"
+        >
+          {vehicles && (
+            <Tile
+              label="Total vehicles"
+              value={vehicles.total}
+              note="Registered in your fleet"
+              icon={Truck}
+              accent="bg-primary/10 text-primary"
+              frame="border-t-primary"
+              href={permissions.includes("vehicles.view") ? "/vehicles" : undefined}
+            />
+          )}
+          {vehicles && (
+            <Tile
+              label="Active vehicles"
+              value={vehicles.active}
+              note={`${vehicles.idle} idle · ${vehicles.maintenance} in maintenance`}
+              icon={Gauge}
+              accent="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+              frame="border-t-emerald-500"
+              href={permissions.includes("vehicles.view") ? "/vehicles?status=active" : undefined}
+            />
+          )}
+          {vehicles?.utilisation_percent != null && (
+            <Tile
+              label="Fleet utilisation"
+              value={`${vehicles.utilisation_percent}%`}
+              note="Active vehicles as a share of all vehicles"
+              icon={MapPinned}
+              accent="bg-cyan-500/10 text-cyan-700 dark:text-cyan-300"
+              frame="border-t-cyan-500"
+            />
+          )}
+          {drivers && (
+            <Tile
+              label="Drivers available"
+              value={drivers.available}
+              note={`of ${drivers.total} drivers`}
+              icon={UserRound}
+              accent="bg-violet-500/10 text-violet-700 dark:text-violet-300"
+              frame="border-t-violet-500"
+              href={permissions.includes("drivers.view") ? "/drivers" : undefined}
+            />
+          )}
+        </section>
+      </div>
+      {trips && (
+        <Card className="flex flex-col justify-between gap-4 border-primary/20 bg-primary/[0.04] sm:flex-row sm:items-center">
+          <div className="flex items-start gap-3">
+            <span className="grid size-10 shrink-0 place-items-center rounded-field bg-primary/10 text-primary">
+              <Route aria-hidden className="size-5" />
+            </span>
+            <div>
+              <h2 className="font-semibold">Trips in progress</h2>
+              <p className="mt-1 font-metric text-2xl font-semibold tabular-nums">
+                {trips.in_progress}
+              </p>
+              <p className="mt-1 text-sm text-base-content/70">
+                {trips.scheduled} scheduled
+              </p>
+            </div>
+          </div>
+          {permissions.includes("trips.view") && (
+            <ButtonLink href="/trips" variant="outline" className="shrink-0">
+              View trips
+            </ButtonLink>
+          )}
+        </Card>
+      )}
+      {maintenance && (
+        <Card className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+          <div className="flex items-start gap-3">
+            <span className="grid size-10 shrink-0 place-items-center rounded-field bg-amber-500/10 text-amber-700 dark:text-amber-300">
+              <TriangleAlert aria-hidden className="size-5" />
+            </span>
+            <div>
+              <h2 className="font-semibold">Maintenance attention</h2>
+              <p className="mt-1 text-sm text-base-content/70">
+                {maintenance.overdue} overdue · {maintenance.due_soon} due soon ·{" "}
+                {maintenance.open_work_orders + maintenance.in_progress_work_orders} open work
+                orders
+              </p>
+            </div>
+          </div>
+          {permissions.includes("maintenance.view") && (
+            <ButtonLink href="/maintenance" variant="outline" className="shrink-0">
+              Review maintenance
+            </ButtonLink>
+          )}
+        </Card>
+      )}
       {vehicles && vehicles.total > 0 && <VehicleStatusBreakdown vehicles={vehicles} />}
       {drivers && <LicenceWarnings drivers={drivers} />}
-    </>
+    </div>
   );
 }

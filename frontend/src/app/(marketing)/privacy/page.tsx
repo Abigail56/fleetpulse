@@ -131,7 +131,8 @@ export default function PrivacyPage() {
             "Service providers that host the service, store its files or deliver its email, only as needed to do so.",
             "Google, if you choose to sign in with it.",
             "Our payment provider, when you pay online: your email address and the payment amount.",
-            "Our map provider, OpenFreeMap: your browser requests map images from it, which shows it your IP address and the map area being viewed. Vehicle records aren't sent to it.",
+            "Geoapify: the tracking and trip-history screens request Geoapify map tiles for the area shown. Your browser sends map requests, including the displayed map area and the Geoapify API key, and Geoapify may receive network and browser information. Vehicle positions, routes and geofence boundaries are drawn in your browser and are not sent as map data to Geoapify.",
+            "OpenFreeMap: the marketing-page demonstration loads map resources from OpenFreeMap, which can receive network and browser information and the area shown by the map. The demonstration uses invented, labelled vehicle data.",
             "Authorities or others where the law requires it, or where needed to protect people's safety or legal rights.",
           ]}
         />

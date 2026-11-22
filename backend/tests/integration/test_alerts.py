@@ -12,7 +12,15 @@ from app.services import alerts as alert_service
 from app.services.telemetry import simulate_tick
 from tests.integration.conftest import API, Member
 from tests.integration.test_drivers import created as new_driver
-from tests.integration.test_tracking import device, new_key, position, send, simulated, vehicle
+from tests.integration.test_tracking import (
+    device,
+    latest,
+    new_key,
+    position,
+    send,
+    simulated,
+    vehicle,
+)
 
 pytestmark = pytest.mark.integration
 
@@ -353,12 +361,15 @@ def run_sweep(app_engine: Engine) -> None:
 def test_a_silent_vehicle_raises_one_alert_and_reporting_ends_it(
     owner: Member, app_engine: Engine
 ) -> None:
-    _, key = tracked(owner)
+    car, key = tracked(owner)
     send(owner, key, position(minutes_ago=90))
     run_sweep(app_engine)
     run_sweep(app_engine)
     alerts = active(owner)
     assert [item["alert_type"] for item in alerts] == ["vehicle_offline"]
+    send(owner, key, position(minutes_ago=120))
+    assert [item["alert_type"] for item in active(owner)] == ["vehicle_offline"]
+    assert latest(owner, car)["is_stale"] is True
     send(owner, key, position(minutes_ago=0))
     assert active(owner) == []
 

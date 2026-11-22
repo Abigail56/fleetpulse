@@ -1,0 +1,25 @@
+User-Agent: *
+Allow: /
+Disallow: /status
+Disallow: /design-system
+Disallow: /account
+Disallow: /dashboard
+Disallow: /onboarding
+Disallow: /organisation
+Disallow: /vehicles
+Disallow: /drivers
+Disallow: /tracking
+Disallow: /map
+Disallow: /trips
+Disallow: /alerts
+Disallow: /geofences
+Disallow: /maintenance
+Disallow: /costs
+Disallow: /compliance
+Disallow: /notifications
+Disallow: /automation
+Disallow: /reports
+Disallow: /billing
+Disallow: /admin
+
+Sitemap: http://localhost:3210/sitemap.xml

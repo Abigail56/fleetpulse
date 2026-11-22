@@ -3,28 +3,30 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { PageHeading } from "@/components/layout/page-heading";
 
-export const LAST_UPDATED = "30 October 2026";
-
-// Business facts only the operator can supply. Nothing is guessed if they're missing.
-export const OPERATOR = process.env.NEXT_PUBLIC_LEGAL_ENTITY ?? "the company that operates FleetPulse";
-export const GOVERNING_LAW = process.env.NEXT_PUBLIC_LEGAL_GOVERNING_LAW;
-const REVIEWED = process.env.NEXT_PUBLIC_LEGAL_REVIEWED === "true";
+const LEGAL_ENTITY = process.env.NEXT_PUBLIC_LEGAL_ENTITY?.trim();
+const LEGAL_CONTACT_EMAIL = process.env.NEXT_PUBLIC_LEGAL_CONTACT_EMAIL?.trim();
+const LEGAL_ADDRESS = process.env.NEXT_PUBLIC_LEGAL_ADDRESS?.trim();
+export const OPERATOR = LEGAL_ENTITY || "the FleetPulse operator (legal identity to be completed)";
+export const GOVERNING_LAW = process.env.NEXT_PUBLIC_LEGAL_GOVERNING_LAW?.trim();
+const LEGAL_DETAILS_COMPLETE = Boolean(
+  LEGAL_ENTITY && LEGAL_CONTACT_EMAIL && LEGAL_ADDRESS && GOVERNING_LAW,
+);
+const REVIEWED =
+  process.env.NEXT_PUBLIC_LEGAL_REVIEWED === "true" && LEGAL_DETAILS_COMPLETE;
 
 export function ContactLine() {
-  const email = process.env.NEXT_PUBLIC_LEGAL_CONTACT_EMAIL;
-  const address = process.env.NEXT_PUBLIC_LEGAL_ADDRESS;
   return (
     <>
-      {email ? (
-        <a className="link" href={`mailto:${email}`}>
-          {email}
+      {LEGAL_CONTACT_EMAIL ? (
+        <a className="link" href={`mailto:${LEGAL_CONTACT_EMAIL}`}>
+          {LEGAL_CONTACT_EMAIL}
         </a>
       ) : (
         <Link className="link" href="/contact">
           our contact form
         </Link>
       )}
-      {address && `, or by post to ${address}`}
+      {LEGAL_ADDRESS && `, or by post to ${LEGAL_ADDRESS}`}
     </>
   );
 }
@@ -63,14 +65,13 @@ export function LegalPage({
     <>
       <PageHeading eyebrow={eyebrow} title={title}>
         <p>{summary}</p>
-        <p className="mt-2 text-sm">Last updated: {LAST_UPDATED}</p>
       </PageHeading>
       <Container className="py-12">
         <div className="flex max-w-3xl flex-col gap-8 text-sm leading-relaxed md:text-base">
           {!REVIEWED && (
             <p className="rounded-box border-l-4 border-warning bg-base-200 p-4 text-sm">
-              This is a draft awaiting legal review, and FleetPulse is still in development. It
-              describes how the product works today, and may change before launch.
+              This is a draft awaiting qualified legal review. It describes how the product works
+              today, is not legal advice, and may change before launch.
             </p>
           )}
           {children}

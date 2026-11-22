@@ -6,11 +6,11 @@ The components live in `frontend/src/components/ui`, with theme tokens in `front
 
 Calm, precise and data-first: thin rules and clear hierarchy, not stacks of shadowed cards. No gradients, glass effects or decorative animation.
 
-- **Colour:** deep teal ink as the primary, with signal amber used sparingly for emphasis. Light and dark themes are both defined, and dark follows the system setting.
-- **Type:** Archivo for headings, Public Sans for reading and IBM Plex Mono for data such as plates and labels.
+- **Colour:** Electric blue actions, teal accents and semantic status colours sit on layered slate and navy surfaces. Light, dark and system themes are available; the selected preference is saved in the browser.
+- **Type:** Inter for interface text, Manrope for headings, Space Grotesk for numeric metrics and JetBrains Mono for plates and technical data.
 - **Shape:** small radii, 1px borders, no shadows.
 
-The logo mark and palette are proposals and can be replaced by changing `components/layout/logo.tsx`, `app/icon.svg` and the theme tokens.
+The palette can be adjusted in `app/globals.css`; the root `ThemeProvider` uses DaisyUI's `light` and `dark` tokens. Geoapify maps follow the active theme by default and the live map can override its style. The logo mark is in `components/layout/logo.tsx` and `app/icon.svg`.
 
 ## Rules
 

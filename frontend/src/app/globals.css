@@ -1,32 +1,33 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 @plugin "daisyui" {
   themes: false;
 }
 
 @plugin "daisyui/theme" {
-  name: "fleetpulse";
+  name: "light";
   default: true;
   prefersdark: false;
   color-scheme: light;
-  --color-base-100: oklch(99% 0.004 95);
-  --color-base-200: oklch(96.5% 0.007 95);
-  --color-base-300: oklch(90.5% 0.01 95);
-  --color-base-content: oklch(23% 0.025 195);
-  --color-primary: oklch(36% 0.065 195);
-  --color-primary-content: oklch(98% 0.005 195);
-  --color-secondary: oklch(46% 0.03 195);
-  --color-secondary-content: oklch(98% 0.005 195);
-  --color-accent: oklch(72% 0.17 58);
-  --color-accent-content: oklch(21% 0.04 58);
-  --color-neutral: oklch(23% 0.03 195);
-  --color-neutral-content: oklch(95% 0.008 195);
-  --color-info: oklch(46% 0.1 240);
-  --color-info-content: oklch(98% 0.005 240);
-  --color-success: oklch(45% 0.11 155);
-  --color-success-content: oklch(98% 0.01 155);
-  --color-warning: oklch(80% 0.15 80);
-  --color-warning-content: oklch(24% 0.05 80);
-  --color-error: oklch(47% 0.17 27);
+  --color-base-100: #ffffff;
+  --color-base-200: #f1f8f6;
+  --color-base-300: #dcebe7;
+  --color-base-content: #142a36;
+  --color-primary: #087c78;
+  --color-primary-content: #ffffff;
+  --color-secondary: #2463a5;
+  --color-secondary-content: #ffffff;
+  --color-accent: #b6dc36;
+  --color-accent-content: #20320b;
+  --color-neutral: #173044;
+  --color-neutral-content: #f8fafc;
+  --color-info: #2563eb;
+  --color-info-content: #ffffff;
+  --color-success: #07966f;
+  --color-success-content: #ffffff;
+  --color-warning: #d77b0b;
+  --color-warning-content: #ffffff;
+  --color-error: #d84452;
   --color-error-content: oklch(98% 0.01 27);
   --radius-selector: 0.25rem;
   --radius-field: 0.375rem;
@@ -39,30 +40,30 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "fleetpulse-dark";
+  name: "dark";
   default: false;
   prefersdark: true;
   color-scheme: dark;
-  --color-base-100: oklch(19% 0.018 195);
-  --color-base-200: oklch(23% 0.02 195);
-  --color-base-300: oklch(31% 0.022 195);
-  --color-base-content: oklch(93% 0.008 195);
-  --color-primary: oklch(79% 0.09 190);
-  --color-primary-content: oklch(20% 0.03 195);
-  --color-secondary: oklch(72% 0.03 195);
-  --color-secondary-content: oklch(20% 0.02 195);
-  --color-accent: oklch(76% 0.16 60);
-  --color-accent-content: oklch(21% 0.04 58);
-  --color-neutral: oklch(13% 0.015 195);
-  --color-neutral-content: oklch(93% 0.008 195);
-  --color-info: oklch(75% 0.1 240);
-  --color-info-content: oklch(20% 0.03 240);
-  --color-success: oklch(76% 0.13 155);
-  --color-success-content: oklch(20% 0.03 155);
-  --color-warning: oklch(82% 0.14 80);
-  --color-warning-content: oklch(24% 0.05 80);
-  --color-error: oklch(73% 0.15 27);
-  --color-error-content: oklch(20% 0.04 27);
+  --color-base-100: #122638;
+  --color-base-200: #0b1b2b;
+  --color-base-300: #294254;
+  --color-base-content: #f8fafc;
+  --color-primary: #36c4b8;
+  --color-primary-content: #062b2e;
+  --color-secondary: #79b4ff;
+  --color-secondary-content: #0b1b2b;
+  --color-accent: #c4ed54;
+  --color-accent-content: #20320b;
+  --color-neutral: #091725;
+  --color-neutral-content: #f8fafc;
+  --color-info: #60a5fa;
+  --color-info-content: #0b1220;
+  --color-success: #10b981;
+  --color-success-content: #052e25;
+  --color-warning: #f59e0b;
+  --color-warning-content: #422006;
+  --color-error: #ef4444;
+  --color-error-content: #ffffff;
   --radius-selector: 0.25rem;
   --radius-field: 0.375rem;
   --radius-box: 0.5rem;
@@ -74,9 +75,10 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-public-sans);
-  --font-display: var(--font-archivo);
-  --font-mono: var(--font-plex-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-manrope);
+  --font-metric: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @layer base {
@@ -101,15 +103,55 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
+
+  body,
+  body * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 160ms;
+    transition-timing-function: ease-out;
+  }
+
+  body {
+    background: var(--color-base-200);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body,
+    body * {
+      transition-duration: 0ms;
+    }
+  }
+}
+
+/* Brand color carries through the public pages without washing out content. */
+.marketing-hero {
+  background:
+    radial-gradient(ellipse at 82% 10%, rgb(182 220 54 / 0.24), transparent 30rem),
+    radial-gradient(ellipse at 7% 90%, rgb(8 124 120 / 0.14), transparent 32rem),
+    linear-gradient(125deg, #f3fbf7 0%, #eff7ff 58%, #fff8e9 100%);
+}
+
+[data-theme="dark"] .marketing-hero {
+  background:
+    radial-gradient(ellipse at 82% 10%, rgb(196 237 84 / 0.14), transparent 30rem),
+    radial-gradient(ellipse at 7% 90%, rgb(54 196 184 / 0.18), transparent 32rem),
+    linear-gradient(125deg, #10293a 0%, #102437 58%, #30291f 100%);
+}
+
+.marketing-showcase {
+  background:
+    radial-gradient(ellipse at 10% 12%, rgb(54 196 184 / 0.2), transparent 24rem),
+    radial-gradient(ellipse at 94% 90%, rgb(196 237 84 / 0.17), transparent 25rem),
+    var(--color-base-100);
 }
 
 /* Fleet status colours: one meaning everywhere, always paired with a text label. */
 :root {
-  --fleet-moving: oklch(72% 0.17 155);
-  --fleet-idle: oklch(70% 0.012 195);
-  --fleet-stale: oklch(79% 0.15 80);
-  --fleet-offline: oklch(60% 0.12 25);
-  --fleet-unknown: oklch(72% 0.09 235);
+  --fleet-moving: #10b981;
+  --fleet-idle: #f59e0b;
+  --fleet-stale: #d97706;
+  --fleet-offline: #64748b;
+  --fleet-unknown: #06b6d4;
 }
 
 .fleet-dot {
@@ -125,42 +167,98 @@
 .fleet-dot--unknown { background: var(--fleet-unknown); }
 .fleet-dot--no_position { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
 
-/* Dark in both site themes: it's a map of the product's operating view. */
+:root {
+  --fleet-map-bg: #eff8f5;
+  --fleet-map-text: #173044;
+  --fleet-map-control: #ffffff;
+  --fleet-map-control-border: #cbd5e1;
+  --fleet-map-marker-border: #ffffff;
+  --fleet-map-label-bg: rgb(255 255 255 / 0.94);
+  --fleet-map-label-text: #172033;
+}
+
+[data-theme="dark"] {
+  --fleet-map-bg: #0b1b2b;
+  --fleet-map-text: #f0eff3;
+  --fleet-map-control: #222b3b;
+  --fleet-map-control-border: #414b5c;
+  --fleet-map-marker-border: #111827;
+  --fleet-map-label-bg: rgb(17 24 39 / 0.94);
+  --fleet-map-label-text: #f0eff3;
+}
+
 .fleet-map {
-  background: #0e1a1c;
-  color: var(--color-neutral-content);
+  background: var(--fleet-map-bg);
+  color: var(--fleet-map-text);
+}
+.live-map-fallback {
+  background-color: var(--fleet-map-bg);
+  background-image:
+    linear-gradient(rgb(8 124 120 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(8 124 120 / 0.07) 1px, transparent 1px),
+    radial-gradient(ellipse at 30% 45%, rgb(182 220 54 / 0.12), transparent 38rem);
+  background-size: 44px 44px, 44px 44px, auto;
+  color: var(--fleet-map-text);
+}
+[data-theme="dark"] .live-map-fallback {
+  background-image:
+    linear-gradient(rgb(54 196 184 / 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(54 196 184 / 0.11) 1px, transparent 1px),
+    radial-gradient(ellipse at 30% 45%, rgb(196 237 84 / 0.1), transparent 38rem);
 }
 .fleet-map .maplibregl-ctrl-attrib,
 .fleet-map .maplibregl-ctrl-attrib.maplibregl-compact-show {
-  background-color: rgb(14 26 28 / 0.9) !important;
-  color: #c7d0d0;
+  background-color: var(--fleet-map-control) !important;
+  color: var(--fleet-map-text);
   font-size: 10px;
 }
-.fleet-map .maplibregl-ctrl-attrib a { color: #e8eeee; }
-.fleet-map .maplibregl-ctrl-attrib-button { filter: invert(1); }
+.fleet-map .maplibregl-ctrl-attrib a { color: var(--fleet-map-text); }
+.fleet-map .maplibregl-ctrl-attrib-button { filter: none; }
 .fleet-map .maplibregl-ctrl-group {
-  background: #1b2b2e;
+  background: var(--fleet-map-control);
   box-shadow: none;
-  border: 1px solid #33474a;
+  border: 1px solid var(--fleet-map-control-border);
 }
-.fleet-map .maplibregl-ctrl-group button + button { border-top-color: #33474a; }
-.fleet-map .maplibregl-ctrl-icon { filter: invert(1); }
+.fleet-map .maplibregl-ctrl-group button + button { border-top-color: var(--fleet-map-control-border); }
+.fleet-map .maplibregl-ctrl-icon { filter: none; }
+[data-theme="dark"] .fleet-map .maplibregl-ctrl-icon { filter: invert(1); }
+.fleet-map--leaflet.leaflet-container {
+  background: var(--fleet-map-bg);
+  color: var(--fleet-map-text);
+  font: inherit;
+}
+.fleet-leaflet-icon { background: transparent; border: 0; }
+.fleet-map--leaflet .leaflet-control-zoom a,
+.fleet-map--leaflet .leaflet-popup-content-wrapper,
+.fleet-map--leaflet .leaflet-popup-tip,
+.fleet-map--leaflet .leaflet-control-attribution {
+  background: var(--fleet-map-control);
+  color: var(--fleet-map-text);
+}
+.fleet-map--leaflet .leaflet-control-zoom a {
+  border-color: var(--fleet-map-control-border);
+}
+.fleet-map--leaflet .leaflet-control-attribution a {
+  color: var(--fleet-map-text);
+}
 .fleet-map .maplibregl-popup-content {
-  background: #1b2b2e;
-  color: #e8eeee;
-  border: 1px solid #33474a;
+  background: var(--fleet-map-control);
+  color: var(--fleet-map-text);
+  border: 1px solid var(--fleet-map-control-border);
   border-radius: var(--radius-field);
   box-shadow: none;
   padding: 0.6rem 1.5rem 0.6rem 0.7rem;
 }
-.fleet-map .maplibregl-popup-tip { border-top-color: #33474a; border-bottom-color: #33474a; }
-.fleet-map .maplibregl-popup-close-button { color: #e8eeee; width: 1.5rem; height: 1.5rem; }
+.fleet-map .maplibregl-popup-tip { border-top-color: var(--fleet-map-control-border); border-bottom-color: var(--fleet-map-control-border); }
+.fleet-map .maplibregl-popup-close-button { color: var(--fleet-map-text); width: 1.5rem; height: 1.5rem; }
 .fleet-popup { font-size: 12px; line-height: 1.45; }
 .fleet-popup p { margin: 0; }
 .fleet-popup__title { font-weight: 600; margin-bottom: 0.25rem !important; }
 .fleet-popup span { opacity: 0.75; }
 
 .fleet-marker {
+  display: grid;
+  place-items: center;
   width: 22px;
   height: 22px;
   padding: 0;
@@ -173,7 +271,7 @@
 .fleet-marker--stale { --fleet-colour: var(--fleet-stale); }
 .fleet-marker--offline { --fleet-colour: var(--fleet-offline); }
 .fleet-marker--selected { z-index: 2; }
-.fleet-marker:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 9999px; }
+.fleet-marker:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; border-radius: 9999px; }
 .fleet-marker__dot {
   position: relative;
   display: grid;
@@ -182,12 +280,12 @@
   height: 22px;
   border-radius: 9999px;
   background: var(--fleet-colour);
-  border: 2px solid #0e1a1c;
+  border: 2px solid var(--fleet-map-marker-border);
 }
 .fleet-marker__dot svg {
   width: 11px;
   height: 11px;
-  fill: #0e1a1c;
+  fill: var(--fleet-map-marker-border);
   transform: rotate(var(--heading, 0deg));
 }
 /* Stopped vehicles aren't heading anywhere, so they show a plain dot. */
@@ -198,15 +296,15 @@
   top: 3px;
   padding: 0 4px;
   border-radius: 3px;
-  background: rgb(14 26 28 / 0.85);
-  color: #e8eeee;
+  background: var(--fleet-map-label-bg);
+  color: var(--fleet-map-label-text);
   font-family: var(--font-mono);
   font-size: 10px;
   line-height: 15px;
   white-space: nowrap;
 }
-.fleet-marker--selected .fleet-marker__dot { outline: 2px solid #fff; outline-offset: 1px; }
-.fleet-marker--selected .fleet-marker__label { background: #fff; color: #0e1a1c; font-weight: 500; }
+.fleet-marker--selected .fleet-marker__dot { outline: 2px solid var(--color-accent); outline-offset: 1px; }
+.fleet-marker--selected .fleet-marker__label { background: var(--color-accent); color: var(--color-accent-content); font-weight: 500; }
 .fleet-marker--moving .fleet-marker__dot::after {
   content: "";
   position: absolute;

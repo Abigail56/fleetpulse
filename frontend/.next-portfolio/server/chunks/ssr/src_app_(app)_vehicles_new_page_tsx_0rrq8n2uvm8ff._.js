@@ -1,0 +1,3 @@
+module.exports=[30948,a=>{"use strict";var b=a.i(87924),c=a.i(26605),d=a.i(28193);a.s(["default",0,function(){return(0,b.jsx)(c.f,{permission:"vehicles.manage",children:a=>(0,b.jsxs)("div",{className:"flex max-w-3xl flex-col gap-6",children:[(0,b.jsx)("h1",{className:"text-3xl font-bold tracking-tight",children:"Add a vehicle"}),(0,b.jsx)(d.f,{unit:a.organisation.distance_unit})]})})}])}];
+
+//# sourceMappingURL=src_app_%28app%29_vehicles_new_page_tsx_0rrq8n2uvm8ff._.js.map

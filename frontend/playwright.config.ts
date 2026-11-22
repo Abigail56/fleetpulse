@@ -9,7 +9,25 @@ export default defineConfig({
   expect: { timeout: 15000 },
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  use: { baseURL: "http://localhost:3211" },
+  use: {
+    baseURL: "http://localhost:3211",
+    // Mocked API tests need a cookie to pass the frontend's session-presence proxy.
+    storageState: {
+      cookies: [
+        {
+          name: "fleetpulse_access",
+          value: "e2e-session",
+          domain: "localhost",
+          path: "/",
+          expires: -1,
+          httpOnly: true,
+          secure: false,
+          sameSite: "Lax",
+        },
+      ],
+      origins: [],
+    },
+  },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
     { name: "mobile", use: { ...devices["Pixel 7"] } },

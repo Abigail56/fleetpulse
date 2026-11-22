@@ -49,10 +49,10 @@ const EVENT_LABELS: Record<string, string> = {
   "trip.cancelled": "Cancelled",
 };
 
-const LiveMapCanvas = dynamic(() => import("../live-map/live-map-canvas"), {
+const LiveMapCanvas = dynamic(() => import("../live-map/geoapify-live-map-canvas"), {
   ssr: false,
   loading: () => (
-    <div role="status" className="fleet-map flex h-full w-full items-center justify-center text-xs text-neutral-content/70">
+    <div role="status" className="fleet-map flex h-full w-full items-center justify-center text-xs text-base-content/70">
       Loading map…
     </div>
   ),
@@ -272,7 +272,7 @@ function RouteCard({ trip }: { trip: Trip }) {
           <div className="isolate mt-3 h-80 overflow-hidden rounded-box">
             <MapBoundary
               fallback={
-                <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-neutral-content">
+                <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-base-content">
                   This device can&apos;t display the map.
                 </div>
               }

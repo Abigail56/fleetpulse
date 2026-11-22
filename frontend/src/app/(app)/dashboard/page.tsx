@@ -11,6 +11,7 @@ export default function DashboardPage() {
           organisationName={organisation.name}
           canAddVehicles={permissions.includes("vehicles.manage")}
           canViewAlerts={permissions.includes("alerts.view")}
+          permissions={permissions}
         />
       )}
     </RequireOrganisation>

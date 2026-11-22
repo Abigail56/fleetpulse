@@ -10,6 +10,7 @@ Status: Accepted (Phase 10)
 - **Device IDs:** unique per organisation and provider, rather than globally as first designed, because one customer could otherwise block another by registering their device ID.
 - **Attribution:** a position belongs to the device's current vehicle. Positions recorded before a device was moved are refused, rather than given to the wrong vehicle.
 - **Timestamps:** positions more than 5 minutes ahead or 30 days old are rejected. This catches bad device clocks and keeps rows out of the default partition.
+- **Store-and-forward:** a device may upload buffered positions later, preserving their original timestamps. History stores accepted late positions, but they don't replace a newer latest position, clear an offline alert, or create geofence crossings. The device must retry and inspect per-position results; hardware buffering and backfill have not been verified against a real vendor.
 - **Stale data:** `is_stale` is calculated when read (after 15 minutes by default), from the position's own time, not when it arrived.
 - **Simulator:** off by default, and only reachable by the worker. `is_simulated` comes from the device record, never the request, so simulated data can't pass as real or real as simulated.
 - **Scheduled upkeep:** Celery Beat creates partitions and applies retention (13 months by default) daily, through `SECURITY DEFINER` functions, because the app role can't create or drop tables. Exactly one Beat process must run.

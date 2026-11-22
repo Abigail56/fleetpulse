@@ -1,19 +1,29 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 // A valid map with no background, so tests don't need the map server.
 const MAP_STYLE = { version: 8, sources: {}, layers: [] };
+const MAP_SELECTOR = ".maplibregl-map, .leaflet-container";
+const MAP_POPUP_SELECTOR = ".maplibregl-popup-content, .leaflet-popup-content";
+const MAP_ATTRIBUTION_SELECTOR = ".maplibregl-ctrl-attrib, .leaflet-control-attribution";
 
 const PAGES = [
   { path: "/", heading: "Every Vehicle. Every Journey. Under Control." },
   { path: "/features", heading: "Everything a fleet operation runs on" },
   { path: "/solutions", heading: "Built for fleets of many kinds" },
   { path: "/pricing", heading: "Simple pricing per vehicle" },
-  { path: "/about", heading: "Why we're building FleetPulse" },
+  { path: "/about", heading: "Moving Businesses Forward, One Journey at a Time." },
   { path: "/contact", heading: "Talk to us" },
   { path: "/terms", heading: "Terms and Conditions" },
   { path: "/privacy", heading: "Privacy Policy" },
 ];
+
+async function themeButton(page: Page, label: "Light" | "Dark" | "System") {
+  return page
+    .getByRole("group", { name: "Appearance" })
+    .first()
+    .getByRole("button", { name: `${label} theme` });
+}
 
 for (const { path, heading } of PAGES) {
   test.describe(`page ${path}`, () => {
@@ -50,14 +60,26 @@ for (const { path, heading } of PAGES) {
     test("has no detectable accessibility violations", async ({ page }) => {
       await page.goto(path);
       const results = await new AxeBuilder({ page }).analyze();
-      expect(results.violations.map((item) => item.id)).toEqual([]);
+      expect(
+        results.violations.map(({ id, help, nodes }) => ({
+          id,
+          help,
+          targets: nodes.map((node) => node.target),
+        })),
+      ).toEqual([]);
     });
 
     test("has no detectable accessibility violations in dark mode", async ({ page }) => {
       await page.emulateMedia({ colorScheme: "dark" });
       await page.goto(path);
       const results = await new AxeBuilder({ page }).analyze();
-      expect(results.violations.map((item) => item.id)).toEqual([]);
+      expect(
+        results.violations.map(({ id, help, nodes }) => ({
+          id,
+          help,
+          targets: nodes.map((node) => node.target),
+        })),
+      ).toEqual([]);
     });
 
     test("every internal link leads somewhere", async ({ page, request }) => {
@@ -73,11 +95,95 @@ for (const { path, heading } of PAGES) {
   });
 }
 
-test("the development notice appears on every marketing page", async ({ page }) => {
+test("the development notice is absent from every marketing page", async ({ page }) => {
   for (const { path } of PAGES) {
     await page.goto(path);
-    await expect(page.getByText("FleetPulse is in development.")).toBeVisible();
+    await expect(page.getByLabel("Development notice")).toHaveCount(0);
   }
+});
+
+test.describe("appearance preference", () => {
+  test("supports light, dark and system themes and remembers the selection", async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "light" });
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await (await themeButton(page, "Dark")).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect.poll(() => page.evaluate(() => localStorage.getItem("fleetpulse-theme"))).toBe("dark");
+
+    await page.reload();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await (await themeButton(page, "System")).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await expect.poll(() => page.evaluate(() => localStorage.getItem("fleetpulse-theme"))).toBe("system");
+  });
+
+  test("keeps the selected vehicle visible while the map changes theme", async ({ page }) => {
+    await page.route("**/tiles.openfreemap.org/**", (route) =>
+      route.fulfill({ status: 200, json: MAP_STYLE }),
+    );
+    await page.goto("/");
+    const selectedVehicle = page
+      .getByRole("list", { name: "Vehicles" })
+      .getByRole("button", { name: /FP-3306/ });
+    await selectedVehicle.click();
+    await (await themeButton(page, "Dark")).click();
+
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect(selectedVehicle).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator(".fleet-marker")).toHaveCount(5);
+    await expect(page.locator(MAP_SELECTOR)).toBeVisible();
+  });
+
+  test("keeps the theme control visible in the mobile navigation header", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const appearance = page.getByRole("group", { name: "Appearance" });
+    await expect(appearance).toBeVisible();
+    const darkButton = appearance.getByRole("button", { name: "Dark theme" });
+    const bounds = await darkButton.boundingBox();
+    expect(bounds?.width).toBeGreaterThanOrEqual(44);
+    expect(bounds?.height).toBeGreaterThanOrEqual(44);
+    await darkButton.click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  });
+
+  test("keeps the theme controls reachable without horizontal overflow on narrow phones", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 780 });
+    await page.goto("/");
+    const appearance = page.getByRole("group", { name: "Appearance" });
+    await expect(appearance).toBeVisible();
+    const bounds = await appearance.getByRole("button", { name: "Dark theme" }).boundingBox();
+    expect(bounds?.width).toBeGreaterThanOrEqual(44);
+    expect(bounds?.height).toBeGreaterThanOrEqual(44);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(0);
+    await appearance.getByRole("button", { name: "Dark theme" }).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  });
+});
+
+test("the About page connects its calls to action and security information", async ({ page }) => {
+  await page.goto("/about");
+  await expect(page.getByRole("link", { name: /Explore FleetPulse/ })).toHaveAttribute(
+    "href",
+    "/features",
+  );
+  await expect(page.getByRole("link", { name: "Get in Touch" }).first()).toHaveAttribute(
+    "href",
+    "/contact",
+  );
+  await expect(page.getByRole("heading", { name: "What Drives Us" })).toBeVisible();
+  await expect(page.locator("#security")).toBeVisible();
+  await expect(
+    page.getByRole("navigation", { name: "Trust & Legal" }).getByRole("link", {
+      name: "Security & Trust",
+    }),
+  ).toHaveAttribute("href", "/about#security");
 });
 
 test.describe("live fleet demonstration", () => {
@@ -91,15 +197,15 @@ test.describe("live fleet demonstration", () => {
     // Runs against the real server when it's reachable, because the credit comes from its style.
     await page.unroute("**/tiles.openfreemap.org/**");
     await page.goto("/");
-    await expect(page.locator(".maplibregl-ctrl-attrib")).toContainText("OpenStreetMap", {
+    await expect(page.locator(MAP_ATTRIBUTION_SELECTOR)).toContainText("OpenStreetMap", {
       useInnerText: false,
     });
   });
 
   test("is clearly labelled as simulated, and shows a real map", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("DEMO · SIMULATED VEHICLE DATA")).toBeVisible();
-    await expect(page.locator(".maplibregl-map")).toBeVisible();
+    await expect(page.getByText("Fleet preview · Simulated locations")).toBeVisible();
+    await expect(page.locator(MAP_SELECTOR)).toBeVisible();
     await expect(page.locator(".fleet-marker")).toHaveCount(5);
     await expect(page.getByText("5 vehicles · 2 moving")).toBeVisible();
   });
@@ -110,7 +216,7 @@ test.describe("live fleet demonstration", () => {
     await row.click();
     await expect(row).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator(".fleet-marker--selected")).toContainText("FP-3306");
-    const popup = page.locator(".maplibregl-popup-content");
+    const popup = page.locator(MAP_POPUP_SELECTOR);
     await expect(popup).toContainText("Stale GPS");
     await expect(popup).toContainText("Destination: Ojota");
     await expect(popup).toContainText("Speed: Not reported");
@@ -122,14 +228,14 @@ test.describe("live fleet demonstration", () => {
     await expect(
       page.getByRole("list", { name: "Vehicles" }).getByRole("button", { name: /FP-2178/ }),
     ).toHaveAttribute("aria-pressed", "true");
-    await expect(page.locator(".maplibregl-popup-content")).toContainText("Idle");
+    await expect(page.locator(MAP_POPUP_SELECTOR)).toContainText("Idle");
   });
 
   test("moving vehicles move smoothly, and stopped ones stay put", async ({ page }) => {
     await page.goto("/");
     const place = (id: string) =>
       page
-        .locator(".fleet-marker", { hasText: id })
+        .locator(`.leaflet-marker-icon[title^="${id}"], .fleet-marker[aria-label^="${id}"]`)
         .evaluate((element) => (element as HTMLElement).style.transform);
     await expect(page.locator(".fleet-marker")).toHaveCount(5);
     const movingBefore = await place("FP-1042");
@@ -142,20 +248,36 @@ test.describe("live fleet demonstration", () => {
   test("respects a preference for reduced motion", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
-    const marker = page.locator(".fleet-marker", { hasText: "FP-1042" });
+    const marker = page.locator(
+      '.leaflet-marker-icon[title^="FP-1042"], .fleet-marker[aria-label^="FP-1042"]',
+    );
     await expect(marker).toBeVisible();
     const before = await marker.evaluate((element) => (element as HTMLElement).style.transform);
     await page.waitForTimeout(1200);
     expect(await marker.evaluate((element) => (element as HTMLElement).style.transform)).toBe(before);
   });
 
-  test("falls back to a simple view when the map server can't be reached", async ({ page }) => {
-    await page.route("**/tiles.openfreemap.org/**", (route) => route.abort());
+  test("shows an interactive map when WebGL2 is unavailable", async ({ page }) => {
+    await page.addInitScript(() => {
+      const getContext = HTMLCanvasElement.prototype.getContext;
+      Object.defineProperty(HTMLCanvasElement.prototype, "getContext", {
+        configurable: true,
+        value: function (this: HTMLCanvasElement, contextId: string, ...args: unknown[]) {
+          if (contextId === "webgl2") return null;
+          return Reflect.apply(getContext, this, [contextId, ...args]);
+        },
+      });
+    });
     await page.goto("/");
-    await expect(page.getByText(/interactive map couldn't load/)).toBeVisible();
-    await expect(page.getByRole("img", { name: /demonstration vehicle routes/ })).toBeVisible();
-    await page.getByRole("list", { name: "Vehicles" }).getByRole("button", { name: /FP-2178/ }).click();
-    await expect(page.getByText("Oshodi depot, Lagos")).toBeVisible();
+    const map = page.getByRole("region", { name: "Interactive map of demonstration vehicles" });
+    await expect(map).toBeVisible();
+    await expect(map.locator(".leaflet-control-zoom")).toBeVisible();
+    await expect(map.locator(".leaflet-marker-icon")).toHaveCount(5);
+    await map.locator('.leaflet-marker-icon[title^="FP-2178"]').click();
+    await expect(
+      page.getByRole("list", { name: "Vehicles" }).getByRole("button", { name: /FP-2178/ }),
+    ).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator(".leaflet-popup-content")).toContainText("Oshodi depot, Lagos");
   });
 
   test("reserves its space, so the page doesn't shift when the map loads", async ({ page }) => {

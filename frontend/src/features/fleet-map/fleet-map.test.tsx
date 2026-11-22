@@ -148,9 +148,9 @@ describe("LiveFleetPanel", () => {
     return render(<LiveFleetPanel feed={createSimulatedFeed(DEMO_FLEET, { animate: false })} />);
   }
 
-  it("labels the data as simulated, and summarises the fleet", () => {
+  it("labels the preview as simulated, and summarises the fleet", () => {
     panel();
-    expect(screen.getByText("DEMO · SIMULATED VEHICLE DATA")).toBeInTheDocument();
+    expect(screen.getByText("Fleet preview · Simulated locations")).toBeInTheDocument();
     expect(screen.getByText("5 vehicles · 2 moving")).toBeInTheDocument();
   });
 

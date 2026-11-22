@@ -202,6 +202,14 @@ def test_a_late_position_goes_to_history_without_replacing_the_latest(
     response = send(owner, key, position(minutes_ago=30, speed_kph=99))
     assert response.json()["accepted"] == 1
     assert float(latest(owner, car)["speed_kph"]) == 10
+    history = owner.client.get(
+        f"{TRACK}/vehicles/{car}/history",
+        params={
+            "start": (utcnow() - timedelta(hours=1)).isoformat(),
+            "end": (utcnow() + timedelta(minutes=1)).isoformat(),
+        },
+    ).json()
+    assert [float(item["speed_kph"]) for item in history] == [99, 10]
 
 
 def test_positions_from_before_a_device_moved_are_not_given_to_its_new_vehicle(

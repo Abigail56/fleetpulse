@@ -1,0 +1,1337 @@
+[
+  {
+    "route": "/vehicles/[id]/edit",
+    "firstLoadUncompressedJsBytes": 877966,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0i4r_9-cydfsu.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/1_d-q_1wkfd7s.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/09ubh4qwzsgc-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/vehicles/[id]",
+    "firstLoadUncompressedJsBytes": 877964,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2pmm2r-34lma9.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/1_d-q_1wkfd7s.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/09ubh4qwzsgc-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/drivers/[id]",
+    "firstLoadUncompressedJsBytes": 868894,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/295k99-zkhw--.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/1_d-q_1wkfd7s.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0n90o6-8wp9cn.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/drivers/[id]/edit",
+    "firstLoadUncompressedJsBytes": 868883,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/3hweiu9i_9ks3.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/1_d-q_1wkfd7s.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0n90o6-8wp9cn.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/organisation/members",
+    "firstLoadUncompressedJsBytes": 840689,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/1lhhymtd47-rp.js",
+      ".next-portfolio/static/chunks/15m7sy0rdfnh9.js",
+      ".next-portfolio/static/chunks/42gu04bvrp45e.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance/work-orders/[id]",
+    "firstLoadUncompressedJsBytes": 832868,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2n33pcs2mi1bo.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/21-j-0-ke--cr.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance/work-orders/[id]/edit",
+    "firstLoadUncompressedJsBytes": 832857,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/065__9926ff4a.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/21-j-0-ke--cr.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance/work-orders/new",
+    "firstLoadUncompressedJsBytes": 832856,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/051uilav4m8gk.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/21-j-0-ke--cr.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/trips/[id]",
+    "firstLoadUncompressedJsBytes": 831289,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/1c6kqwmoldz2-.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/426a1o526my6x.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/trips/[id]/edit",
+    "firstLoadUncompressedJsBytes": 831278,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0re2ih-ccmg5n.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/426a1o526my6x.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance/schedules/[id]/edit",
+    "firstLoadUncompressedJsBytes": 827349,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/288exk0hf7l7k.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance/schedules/new",
+    "firstLoadUncompressedJsBytes": 827349,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2adskw714h9rq.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance/schedules/[id]",
+    "firstLoadUncompressedJsBytes": 827347,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0hnwwhe1d-4oi.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2nupkw04un19g.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/geofences/[id]",
+    "firstLoadUncompressedJsBytes": 826577,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0ugjkiw1xxr1c.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/3z-3h-vwph91-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/geofences/[id]/edit",
+    "firstLoadUncompressedJsBytes": 826566,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/3rs8al-ewmqm1.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/3z-3h-vwph91-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/inspections/[id]",
+    "firstLoadUncompressedJsBytes": 821732,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0y8qt-ozvgl57.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/1eqmet42lyvag.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/inspections/new",
+    "firstLoadUncompressedJsBytes": 821732,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/16a4tcb4gk4_n.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/1eqmet42lyvag.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/defects/new",
+    "firstLoadUncompressedJsBytes": 821720,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/33cmhgh7rbabh.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/1eqmet42lyvag.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/costs/fuel/[id]/edit",
+    "firstLoadUncompressedJsBytes": 817795,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/3geknjgsqeexj.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/14my_s6j7z5k-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/costs/fuel/new",
+    "firstLoadUncompressedJsBytes": 817795,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/059ias-1d2mgw.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/14my_s6j7z5k-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/costs/expenses/[id]/edit",
+    "firstLoadUncompressedJsBytes": 817782,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0defw-ld8qhv3.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/14my_s6j7z5k-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/costs/expenses/new",
+    "firstLoadUncompressedJsBytes": 817782,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/3gbxu4m5f-0bu.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/14my_s6j7z5k-.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/trips/new",
+    "firstLoadUncompressedJsBytes": 808393,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2dhaspg69j7v8.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2c7w5pv97furb.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/account",
+    "firstLoadUncompressedJsBytes": 804174,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/3fhu8q6tqx7gt.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/documents/[id]/edit",
+    "firstLoadUncompressedJsBytes": 799246,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2yr4_-44xx65v.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/documents/new",
+    "firstLoadUncompressedJsBytes": 799246,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0bywdjgpu2-s2.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/templates/[id]/edit",
+    "firstLoadUncompressedJsBytes": 799246,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0lv6zn13y74gy.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance/templates/new",
+    "firstLoadUncompressedJsBytes": 799246,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2cm7hf2fpm0ry.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/geofences/new",
+    "firstLoadUncompressedJsBytes": 796213,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2xt8cy6hyalj9.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/organisation/settings",
+    "firstLoadUncompressedJsBytes": 792540,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0gw6n_n37xg89.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/vehicles/new",
+    "firstLoadUncompressedJsBytes": 790054,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/1rpfvba-l4j3b.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/onboarding",
+    "firstLoadUncompressedJsBytes": 788477,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0rmjabipfb17h.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/drivers/new",
+    "firstLoadUncompressedJsBytes": 788186,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0bzbo8al8nm-6.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/login",
+    "firstLoadUncompressedJsBytes": 761929,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/17a3gx79jm44u.js",
+      ".next-portfolio/static/chunks/0yi5xmyoc9bso.js",
+      ".next-portfolio/static/chunks/388370pucid2m.js",
+      ".next-portfolio/static/chunks/3v849lclhdnu6.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/register",
+    "firstLoadUncompressedJsBytes": 761123,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/17a3gx79jm44u.js",
+      ".next-portfolio/static/chunks/0yi5xmyoc9bso.js",
+      ".next-portfolio/static/chunks/2yexskzm8jpw5.js",
+      ".next-portfolio/static/chunks/3v849lclhdnu6.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/reset-password",
+    "firstLoadUncompressedJsBytes": 751148,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/17a3gx79jm44u.js",
+      ".next-portfolio/static/chunks/0yi5xmyoc9bso.js",
+      ".next-portfolio/static/chunks/2z-zpen-zfhwg.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/verify-email",
+    "firstLoadUncompressedJsBytes": 750585,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/17a3gx79jm44u.js",
+      ".next-portfolio/static/chunks/0yi5xmyoc9bso.js",
+      ".next-portfolio/static/chunks/0hi8m_k_lhi-l.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/forgot-password",
+    "firstLoadUncompressedJsBytes": 747873,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/17a3gx79jm44u.js",
+      ".next-portfolio/static/chunks/0yi5xmyoc9bso.js",
+      ".next-portfolio/static/chunks/1lzl5ndxjb4d1.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/drivers",
+    "firstLoadUncompressedJsBytes": 703003,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/3wruy99a_lcyz.js",
+      ".next-portfolio/static/chunks/42gu04bvrp45e.js",
+      ".next-portfolio/static/chunks/40ru-8mjfj4xh.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/compliance",
+    "firstLoadUncompressedJsBytes": 695762,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/1c_cxjyda4pei.js",
+      ".next-portfolio/static/chunks/32iim3jkjwsnh.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/map",
+    "firstLoadUncompressedJsBytes": 692529,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2rwnwrdmtp-2c.js",
+      ".next-portfolio/static/chunks/3qus8zg5tuvux.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/contact",
+    "firstLoadUncompressedJsBytes": 691597,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/2himwyjvhw0w_.js",
+      ".next-portfolio/static/chunks/3i_fzi-wdymb7.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/costs",
+    "firstLoadUncompressedJsBytes": 691202,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0b010bk156m46.js",
+      ".next-portfolio/static/chunks/0wduwta_9duzd.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/admin",
+    "firstLoadUncompressedJsBytes": 680965,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/1wbisk3crqjri.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/vehicles",
+    "firstLoadUncompressedJsBytes": 680702,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2m_5x7vr8smci.js",
+      ".next-portfolio/static/chunks/42gu04bvrp45e.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/maintenance",
+    "firstLoadUncompressedJsBytes": 679348,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2h51rcsesivjt.js",
+      ".next-portfolio/static/chunks/0ydqpumrzwnwa.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/alerts",
+    "firstLoadUncompressedJsBytes": 678953,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/35hkc_de0iccf.js",
+      ".next-portfolio/static/chunks/2tvdfoiz-r1iv.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/automation",
+    "firstLoadUncompressedJsBytes": 675650,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/262s3wlhuk2s7.js",
+      ".next-portfolio/static/chunks/25u_q57k476xp.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/reports",
+    "firstLoadUncompressedJsBytes": 674903,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/04ahgo4ca-17z.js",
+      ".next-portfolio/static/chunks/0dqlxm3fftv4_.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/notifications",
+    "firstLoadUncompressedJsBytes": 672981,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/05sys4munp50m.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/billing",
+    "firstLoadUncompressedJsBytes": 672192,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2ynkikq-r_isa.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/trips",
+    "firstLoadUncompressedJsBytes": 671959,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/20vq5xi9dte98.js",
+      ".next-portfolio/static/chunks/3mk92w973tl8k.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/tracking",
+    "firstLoadUncompressedJsBytes": 669444,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/0m6vn1r-41q_h.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/dashboard",
+    "firstLoadUncompressedJsBytes": 660038,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/16fyr5lwgvdp5.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/automation/[id]",
+    "firstLoadUncompressedJsBytes": 650375,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/22gneqeefqugy.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/automation/new",
+    "firstLoadUncompressedJsBytes": 650329,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/2z0fsl3_bzztk.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/geofences",
+    "firstLoadUncompressedJsBytes": 648553,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/11d4sl2nbu5-f.js",
+      ".next-portfolio/static/chunks/2ii49_ck_iaoa.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1n3sle8cs9dgq.js",
+      ".next-portfolio/static/chunks/23pc3sny7e0__.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/accept-invitation",
+    "firstLoadUncompressedJsBytes": 617978,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/3tpnf-fxsz8bf.js",
+      ".next-portfolio/static/chunks/17a3gx79jm44u.js",
+      ".next-portfolio/static/chunks/0yi5xmyoc9bso.js",
+      ".next-portfolio/static/chunks/1ya5mb23746-f.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/3v849lclhdnu6.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 563805,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0svwx_xmmwxw9.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/about",
+    "firstLoadUncompressedJsBytes": 544570,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/features",
+    "firstLoadUncompressedJsBytes": 544570,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/pricing",
+    "firstLoadUncompressedJsBytes": 544570,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/privacy",
+    "firstLoadUncompressedJsBytes": 544570,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/solutions",
+    "firstLoadUncompressedJsBytes": 544570,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/terms",
+    "firstLoadUncompressedJsBytes": 544570,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/2y7lps7wfpd35.js",
+      ".next-portfolio/static/chunks/2acu4yzf0use0.js",
+      ".next-portfolio/static/chunks/1y7ms0867cmlu.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/design-system",
+    "firstLoadUncompressedJsBytes": 493431,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/29017sj3i6d24.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/_not-found",
+    "firstLoadUncompressedJsBytes": 483227,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  },
+  {
+    "route": "/status",
+    "firstLoadUncompressedJsBytes": 483227,
+    "firstLoadChunkPaths": [
+      ".next-portfolio/static/chunks/073cie8asf0sm.js",
+      ".next-portfolio/static/chunks/2n5qeheznvl4u.js",
+      ".next-portfolio/static/chunks/0bu-5n8ofglq4.js",
+      ".next-portfolio/static/chunks/1y720a1dlv81j.js",
+      ".next-portfolio/static/chunks/2n-jqwbhogid7.js",
+      ".next-portfolio/static/chunks/2ko5tt-aafx9q.js",
+      ".next-portfolio/static/chunks/turbopack-3-ry682tkyiqk.js"
+    ]
+  }
+]

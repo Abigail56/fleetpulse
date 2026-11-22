@@ -50,13 +50,13 @@ const STREAM_DISPLAY: Record<StreamState, { status: Status; label: string }> = {
 
 function MapLoading() {
   return (
-    <div role="status" className="fleet-map flex h-full w-full items-center justify-center text-xs text-neutral-content/70">
+    <div role="status" className="fleet-map flex h-full w-full items-center justify-center text-xs text-base-content/70">
       Loading map…
     </div>
   );
 }
 
-const LiveMapCanvas = dynamic(() => import("./live-map-canvas"), {
+const LiveMapCanvas = dynamic(() => import("./geoapify-live-map-canvas"), {
   ssr: false,
   loading: MapLoading,
 });
@@ -424,7 +424,7 @@ export function LiveMap({
         <div className="isolate h-96 lg:h-[36rem]">
           <MapBoundary
             fallback={
-              <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-neutral-content">
+              <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-base-content">
                 <span>
                   <MapPinOff aria-hidden className="mx-auto mb-2 size-6" />
                   This device can&apos;t display the map. The vehicle list still shows current

@@ -226,6 +226,32 @@ describe("DashboardView", () => {
     expect(screen.queryByText("Total vehicles")).not.toBeInTheDocument();
   });
 
+  it("shows maintenance counts only when the role can view maintenance", async () => {
+    mockApi({
+      "/dashboard": () =>
+        jsonResponse(200, {
+          ...ZERO,
+          vehicles: { ...ZERO.vehicles, total: 1, active: 1, utilisation_percent: 100 },
+        }),
+      "/maintenance/summary": () =>
+        jsonResponse(200, {
+          overdue: 2,
+          due_soon: 3,
+          open_work_orders: 4,
+          in_progress_work_orders: 1,
+          recent_costs: [],
+        }),
+    });
+    renderWithQuery(
+      <DashboardView
+        organisationName="Swift"
+        permissions={["vehicles.view", "maintenance.view"]}
+      />,
+    );
+    expect(await screen.findByText("Maintenance attention")).toBeInTheDocument();
+    expect(screen.getByText("2 overdue · 3 due soon · 5 open work orders")).toBeInTheDocument();
+  });
+
   it("shows an error with a retry", async () => {
     mockApi({ "/dashboard": () => errorResponse(500, "server_error", "Something failed.") });
     renderWithQuery(<DashboardView organisationName="Swift" />);

@@ -1,0 +1,3 @@
+{
+  "/(app)/maintenance/work-orders/[id]/edit/page": "app/(app)/maintenance/work-orders/[id]/edit/page.js"
+}

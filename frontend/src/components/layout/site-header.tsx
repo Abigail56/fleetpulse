@@ -10,6 +10,7 @@ import { Container } from "@/components/layout/container";
 import { Logo } from "@/components/layout/logo";
 import { NAV_LINKS } from "@/components/layout/nav-links";
 import { cn } from "@/lib/cn";
+import { ThemeControl } from "@/components/theme/theme-control";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -33,8 +34,8 @@ export function SiteHeader() {
         onClick={() => setOpen(false)}
         aria-current={current ? "page" : undefined}
         className={cn(
-          "rounded-field px-3 py-2 text-sm font-medium hover:bg-base-200",
-          current && "text-primary underline underline-offset-8",
+          "rounded-field px-3 py-2 text-sm font-medium transition-colors hover:bg-primary/10 hover:text-primary",
+          current && "bg-primary/10 text-primary",
         )}
       >
         {label}
@@ -43,17 +44,20 @@ export function SiteHeader() {
   });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-base-300 bg-base-100">
-      <Container className="flex h-16 items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 border-b border-primary/15 bg-base-100/90 shadow-sm shadow-primary/5 backdrop-blur-xl">
+      <Container className="flex h-16 items-center justify-between gap-3 md:h-20 md:gap-4">
         <Logo />
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
           {navLinks}
         </nav>
-        <div className="hidden items-center gap-2 md:flex">
-          <ButtonLink href="/login" variant="ghost">
-            Sign in
-          </ButtonLink>
-          <ButtonLink href="/register">Get started</ButtonLink>
+        <div className="flex items-center gap-1 md:gap-2">
+          <ThemeControl className="mr-1" />
+          <div className="hidden items-center gap-2 md:flex">
+            <ButtonLink href="/login" variant="ghost">
+              Sign in
+            </ButtonLink>
+            <ButtonLink href="/register">Get started</ButtonLink>
+          </div>
         </div>
         <button
           type="button"

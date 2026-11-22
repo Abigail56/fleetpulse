@@ -9,6 +9,7 @@
 - An email provider with SMTP and STARTTLS.
 - A private S3-compatible bucket, with public access blocked. Turn on the provider's versioning, because database backups don't include files.
 - Somewhere off the server to keep backups.
+- A Geoapify Maps key restricted to the production app's HTTP referrers.
 
 ## First deployment
 
@@ -16,6 +17,8 @@
 cp deploy/.env.production.example deploy/.env.production
 chmod 600 deploy/.env.production
 # Fill it in. Generate each secret with: openssl rand -hex 32
+# Set FLEETPULSE_COOKIE_DOMAIN to the shared parent domain (for example .example.com).
+# Set NEXT_PUBLIC_GEOAPIFY_API_KEY to the restricted browser key.
 
 docker compose --env-file deploy/.env.production -f deploy/docker-compose.prod.yml up -d --build --wait
 ```
@@ -101,9 +104,10 @@ Nothing currently pages anyone. Error tracking, such as Sentry, needs an account
 - [ ] A real Paystack test payment, before setting `FLEETPULSE_BILLING_ENFORCED=true`
 - [ ] Prices confirmed
 - [ ] A real GPS device or vendor feed tested
+- [ ] Geoapify key restricted to the app domain and appropriate usage limits
 - [ ] Backups scheduled and copied off the server, and a restore tested
 - [ ] An outside uptime monitor
-- [ ] OpenFreeMap reviewed, as it has no uptime guarantee
+- [ ] OpenFreeMap reviewed for the marketing-page demonstration; it has no uptime guarantee
 - [ ] An independent security test, because this project's own review can't replace one
 
 ## Checking a stack

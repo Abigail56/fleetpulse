@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Public_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono, Manrope, Space_Grotesk } from "next/font/google";
+import { headers } from "next/headers";
 import { connection } from "next/server";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import "./globals.css";
 
-const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"] });
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
@@ -21,17 +24,26 @@ export const metadata: Metadata = {
   title: { default: "FleetPulse", template: "%s | FleetPulse" },
   description:
     "Fleet management software for monitoring vehicles, managing drivers and controlling operating costs from one platform.",
+  icons: {
+    icon: "/fleetpulse-mark.svg",
+    shortcut: "/fleetpulse-mark.svg",
+    apple: "/fleetpulse-mark.png",
+  },
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   // Each response has its own script nonce, so pages can't be built ahead of time.
   await connection();
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${publicSans.variable} ${plexMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${inter.variable} ${manrope.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        <ThemeProvider nonce={nonce}>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -41,6 +41,7 @@ import { ALERT_REFRESH_MS, fetchAlertSummary, SUMMARY_KEY } from "@/features/ale
 import { fetchUnreadCount, REFRESH_MS, UNREAD_KEY } from "@/features/notifications/api";
 import { cn } from "@/lib/cn";
 import { changeSession, subscribeToSessionChanges } from "@/lib/session-change";
+import { ThemeControl } from "@/components/theme/theme-control";
 
 function OrganisationSwitcher() {
   const current = useCurrentOrganisation();
@@ -61,13 +62,14 @@ function OrganisationSwitcher() {
           </label>
           <SelectInput
             id="organisation-switcher"
+            className="border-white/15 bg-white/10 text-white"
             value={current.data?.organisation.id ?? ""}
             disabled={switchTo.isPending}
             onChange={(event) => switchTo.mutate(event.target.value)}
           >
             {!current.data && <option value="">Choose…</option>}
             {organisations.map(({ organisation }) => (
-              <option key={organisation.id} value={organisation.id}>
+              <option key={organisation.id} value={organisation.id} className="bg-[#0b1220] text-white">
                 {organisation.name}
               </option>
             ))}
@@ -200,6 +202,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       ? [{ href: "/admin", label: "Platform administration", icon: ShieldAlert }]
       : []),
   ];
+  const linkGroups = [
+    { title: "Overview", paths: ["/dashboard"] },
+    { title: "Operations", paths: ["/map", "/trips", "/alerts", "/notifications", "/automation", "/geofences"] },
+    { title: "Fleet management", paths: ["/vehicles", "/drivers", "/maintenance", "/costs", "/compliance"] },
+    { title: "Insights & administration", paths: ["/reports", "/organisation/members", "/organisation/settings", "/billing", "/account", "/admin"] },
+  ].map((group) => ({
+    ...group,
+    links: links.filter((link) => group.paths.includes(link.href)),
+  })).filter((group) => group.links.length > 0);
 
   useEffect(() => subscribeToSessionChanges(() => window.location.reload()), []);
 
@@ -233,6 +244,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <header className="flex h-14 items-center justify-between border-b border-base-300 bg-base-100 px-4 md:hidden">
         <Logo href="/dashboard" />
         <div className="flex items-center gap-1">
+          <ThemeControl />
           {permissions.includes("alerts.view") && <HeaderAlerts />}
           <button
             type="button"
@@ -250,7 +262,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         id="app-sidebar"
         aria-label="Application"
         className={cn(
-          "flex-col gap-6 border-b border-base-300 bg-base-100 p-4 md:sticky md:top-0 md:flex md:h-screen md:w-64 md:shrink-0 md:border-r md:border-b-0",
+          "flex-col gap-6 border-b border-white/10 bg-[#0b1220] p-4 text-slate-100 md:sticky md:top-0 md:flex md:h-screen md:w-64 md:shrink-0 md:border-r md:border-b-0",
           open ? "flex" : "hidden",
         )}
       >
@@ -258,29 +270,42 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Logo href="/dashboard" />
         </div>
         <OrganisationSwitcher />
-        <nav aria-label="Main" className="flex flex-col gap-1">
-          {links.map(({ href, label, icon: Icon }) => {
-            const active = pathname === href || pathname.startsWith(`${href}/`);
-            return (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setOpen(false)}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "flex items-center gap-2.5 rounded-field px-3 py-2 text-sm font-medium hover:bg-base-200",
-                  active && "bg-base-200 text-primary",
-                )}
-              >
-                <Icon aria-hidden className="size-4" />
-                {label}
-                {href === "/alerts" && <AlertCount />}
-                {href === "/notifications" && <UnreadCount />}
-              </Link>
-            );
-          })}
+        <nav aria-label="Main" className="flex flex-col gap-5">
+          {linkGroups.map(({ title, links: groupLinks }) => (
+            <section key={title}>
+              <h2 className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                {title}
+              </h2>
+              <div className="flex flex-col gap-0.5">
+                {groupLinks.map(({ href, label, icon: Icon }) => {
+                  const active = pathname === href || pathname.startsWith(`${href}/`);
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex min-h-10 items-center gap-2.5 rounded-field px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white",
+                        active && "bg-[#1e3a5f] text-cyan-200 hover:bg-[#1e3a5f]",
+                      )}
+                    >
+                      <Icon aria-hidden className="size-4 shrink-0" />
+                      {label}
+                      {href === "/alerts" && <AlertCount />}
+                      {href === "/notifications" && <UnreadCount />}
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </nav>
-        <div className="mt-auto flex flex-col gap-2 border-t border-base-300 pt-4">
+        <div className="mt-auto flex flex-col gap-2 border-t border-white/10 pt-4">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-sm font-medium">Appearance</span>
+            <ThemeControl />
+          </div>
           {user.data && (
             <div className="min-w-0 text-sm">
               <p className="truncate font-medium">{user.data.full_name}</p>
@@ -293,7 +318,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
       <main id="app-content" className="min-w-0 flex-1 bg-base-200">
-        <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">{children}</div>
+        <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">{children}</div>
       </main>
     </div>
   );

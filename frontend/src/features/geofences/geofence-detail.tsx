@@ -33,7 +33,7 @@ const EVENT_PAGE_SIZE = 25;
 const GeofenceMap = dynamic(() => import("./geofence-map"), {
   ssr: false,
   loading: () => (
-    <div role="status" className="fleet-map flex h-full w-full items-center justify-center text-xs text-neutral-content/70">
+    <div role="status" className="fleet-map flex h-full w-full items-center justify-center text-xs text-base-content/70">
       Loading map…
     </div>
   ),
@@ -166,7 +166,7 @@ export function GeofenceDetail({ membership }: { membership: CurrentMembership }
       <div className="isolate h-80 overflow-hidden rounded-box">
         <MapBoundary
           fallback={
-            <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-neutral-content">
+            <div className="fleet-map flex h-full w-full items-center justify-center p-6 text-center text-sm text-base-content">
               This device can&apos;t display the map.
             </div>
           }

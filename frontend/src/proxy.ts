@@ -1,7 +1,33 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+const ACCESS_COOKIE = "fleetpulse_access";
+const PROTECTED_PATHS = [
+  "/account",
+  "/admin",
+  "/alerts",
+  "/automation",
+  "/billing",
+  "/compliance",
+  "/costs",
+  "/dashboard",
+  "/drivers",
+  "/geofences",
+  "/maintenance",
+  "/map",
+  "/notifications",
+  "/onboarding",
+  "/organisation",
+  "/reports",
+  "/tracking",
+  "/trips",
+  "/vehicles",
+];
 const MAP_STYLE_URL =
   process.env.NEXT_PUBLIC_MAP_STYLE_URL ?? "https://tiles.openfreemap.org/styles/dark";
+
+export function isProtectedPath(pathname: string) {
+  return PROTECTED_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
+}
 
 function originOf(url: string | undefined) {
   if (!url) return "";
@@ -21,10 +47,10 @@ export function contentSecurityPolicy(nonce: string, isDevelopment: boolean) {
     // Only scripts carrying this response's nonce, and whatever those load.
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${isDevelopment ? " 'unsafe-eval'" : ""}`,
     // Style attributes are used throughout, and can't run code.
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob:",
-    "font-src 'self' data:",
-    `connect-src 'self' ${api} ${stream} ${originOf(MAP_STYLE_URL)}${isDevelopment ? " ws://localhost:* ws://127.0.0.1:*" : ""}`,
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' data: blob: https://maps.geoapify.com",
+    "font-src 'self' data: https://fonts.gstatic.com",
+    `connect-src 'self' ${api} ${stream} ${originOf(MAP_STYLE_URL)} https://maps.geoapify.com${isDevelopment ? " ws://localhost:* ws://127.0.0.1:*" : ""}`,
     // The map draws in a worker.
     "worker-src 'self' blob:",
     "object-src 'none'",
@@ -42,6 +68,13 @@ export function contentSecurityPolicy(nonce: string, isDevelopment: boolean) {
 export function proxy(request: NextRequest) {
   const nonce = btoa(crypto.randomUUID());
   const policy = contentSecurityPolicy(nonce, process.env.NODE_ENV === "development");
+  if (isProtectedPath(request.nextUrl.pathname) && !request.cookies.has(ACCESS_COOKIE)) {
+    const signIn = new URL("/login", request.url);
+    signIn.searchParams.set("next", `${request.nextUrl.pathname}${request.nextUrl.search}`);
+    const response = NextResponse.redirect(signIn);
+    response.headers.set("Content-Security-Policy", policy);
+    return response;
+  }
   // Next.js reads the nonce from this request header, and adds it to its own scripts.
   const headers = new Headers(request.headers);
   headers.set("x-nonce", nonce);

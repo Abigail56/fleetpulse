@@ -1,0 +1,3 @@
+module.exports=[1250,a=>{"use strict";var b=a.i(92415);a.s(["y",0,["geofences"],"h",0,a=>(0,b.k)(`/geofences/${a}/archive`,{method:"POST"}),"_",0,a=>(0,b.k)("/geofences",{method:"POST",body:a}),"f",0,a=>(0,b.k)(`/geofences/${a}`),"I",0,(a,c)=>(0,b.k)(`/geofences/${a}/events?page=${c}`),"a",0,(a=!1)=>(0,b.k)(`/geofences${a?"?archived=true":""}`),"S",0,(a,c)=>(0,b.k)(`/geofences/${a}`,{method:"PATCH",body:c})])}];
+
+//# sourceMappingURL=src_features_geofences_api_ts_1600sqp2564so._.js.map

@@ -1,0 +1,3 @@
+{
+  "/(app)/geofences/[id]/edit/page": "app/(app)/geofences/[id]/edit/page.js"
+}

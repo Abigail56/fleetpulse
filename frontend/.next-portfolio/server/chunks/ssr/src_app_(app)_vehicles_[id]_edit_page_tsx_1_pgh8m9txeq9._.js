@@ -1,0 +1,3 @@
+module.exports=[60819,a=>{"use strict";var b=a.i(87924),c=a.i(72131),d=a.i(26605),e=a.i(48574);a.s(["default",0,function(){return(0,b.jsx)(d.f,{permission:"vehicles.manage",children:a=>(0,b.jsx)(c.Suspense,{fallback:(0,b.jsx)("div",{className:"skeleton h-40 w-full"}),children:(0,b.jsx)(e.F,{membership:a})})})}])}];
+
+//# sourceMappingURL=src_app_%28app%29_vehicles_%5Bid%5D_edit_page_tsx_1_pgh8m9txeq9._.js.map

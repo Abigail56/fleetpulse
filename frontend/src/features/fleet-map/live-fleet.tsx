@@ -18,7 +18,7 @@ function MapLoading() {
     <div
       role="status"
       aria-label="Loading map"
-      className="fleet-map flex h-full w-full items-center justify-center text-xs text-neutral-content/70"
+      className="fleet-map flex h-full w-full items-center justify-center text-xs text-base-content/70"
     >
       Loading map…
     </div>
@@ -100,10 +100,10 @@ export function LiveFleetPanel({ feed }: { feed: FleetFeed }) {
 
   return (
     <figure className="m-0">
-      <div className="overflow-hidden rounded-box border border-base-300 bg-base-100">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-base-300 px-4 py-3">
-          <span className="text-sm font-semibold">Live fleet</span>
-          <span className="font-mono text-xs opacity-75">
+      <div className="overflow-hidden rounded-[1.25rem] border border-base-300 bg-base-100 shadow-xl shadow-primary/10">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-primary/15 bg-gradient-to-r from-primary/10 via-base-100 to-accent/20 px-4 py-3">
+          <span className="text-sm font-bold text-primary">Fleet preview · Simulated locations</span>
+          <span className="rounded-full bg-base-100/80 px-2.5 py-1 font-mono text-xs text-base-content/75">
             {vehicles.length} vehicles · {moving} moving
           </span>
         </div>
@@ -137,9 +137,6 @@ export function LiveFleetPanel({ feed }: { feed: FleetFeed }) {
           </ul>
         </div>
       </div>
-      <figcaption className="mt-2 font-mono text-[0.7rem] tracking-wide opacity-70">
-        DEMO · SIMULATED VEHICLE DATA
-      </figcaption>
     </figure>
   );
 }

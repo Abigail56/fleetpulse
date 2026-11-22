@@ -92,6 +92,13 @@ describe("LoginForm", () => {
     await waitFor(() => expect(navigation.replace).toHaveBeenCalledWith("/dashboard"));
   });
 
+  it("restores a valid session before showing the sign-in form after a proxy redirect", async () => {
+    navigation.params = new URLSearchParams({ next: "/vehicles/123" });
+    mockFetch(jsonResponse(200, AUTH_BODY));
+    renderWithQuery(<LoginForm />);
+    await waitFor(() => expect(navigation.replace).toHaveBeenCalledWith("/vehicles/123"));
+  });
+
   it("shows the API's generic message for wrong details", async () => {
     mockFetch(errorResponse(401, "invalid_credentials", "Incorrect email or password."));
     const user = userEvent.setup();

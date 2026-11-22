@@ -1,0 +1,3 @@
+module.exports=[92441,a=>{"use strict";var b=a.i(87924),c=a.i(26605),d=a.i(59881);a.s(["default",0,function(){return(0,b.jsx)(c.f,{permission:"trips.manage",children:()=>(0,b.jsxs)("div",{className:"flex max-w-3xl flex-col gap-6",children:[(0,b.jsx)("h1",{className:"text-3xl font-bold tracking-tight",children:"New trip"}),(0,b.jsx)(d.f,{})]})})}])}];
+
+//# sourceMappingURL=src_app_%28app%29_trips_new_page_tsx_1knvrxdxsxxwd._.js.map

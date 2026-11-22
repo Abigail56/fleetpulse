@@ -1,0 +1,3 @@
+module.exports=[84377,a=>{"use strict";var b=a.i(87924),c=a.i(77266),d=a.i(26605);a.s(["default",0,function(){return(0,b.jsx)(d.f,{permission:"drivers.manage",children:()=>(0,b.jsxs)("div",{className:"flex max-w-3xl flex-col gap-6",children:[(0,b.jsx)("h1",{className:"text-3xl font-bold tracking-tight",children:"Add a driver"}),(0,b.jsx)(c.f,{})]})})}])}];
+
+//# sourceMappingURL=src_app_%28app%29_drivers_new_page_tsx_1srz5i4xrnw2i._.js.map

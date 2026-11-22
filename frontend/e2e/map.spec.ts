@@ -42,9 +42,6 @@ const FLEET = [
 ];
 
 async function stub(page: Page, fleet: unknown[] = FLEET) {
-  await page.route("**/tiles.openfreemap.org/**", (route) =>
-    route.fulfill({ status: 200, json: { version: 8, sources: {}, layers: [] } }),
-  );
   const routes: Record<string, unknown> = {
     "/auth/me": { user: { id: "1", email: "a@example.com", full_name: "Ada" }, csrf_token: "c" },
     "/organisation": {
@@ -84,7 +81,7 @@ for (const scheme of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.goto("/map");
     await expect(page.getByText("Live", { exact: true })).toBeVisible();
-    await expect(page.locator(".maplibregl-canvas")).toBeVisible();
+    await expect(page.getByText(/Geoapify is not configured/)).toBeVisible();
     await page.getByRole("button", { name: /KCC 789C/ }).click();
     await expect(page.getByText(/may have moved since/)).toBeVisible();
     const results = await new AxeBuilder({ page }).analyze();
@@ -111,6 +108,28 @@ test("each vehicle shows the status its data supports", async ({ page }) => {
   await status(/KCC 789C/, "Stale GPS");
   await status(/KCD 012D/, "Offline");
   await status(/KCE 345E/, "No position yet");
+});
+
+test("the dashboard theme control keeps the selected vehicle and session active", async ({ page }) => {
+  await page.routeWebSocket(/tracking\/stream/, (socket) => {
+    socket.send(JSON.stringify({ type: "ready" }));
+  });
+  await stub(page);
+  await page.goto("/map");
+  const selectedVehicle = page.getByRole("list", { name: "Vehicles" }).getByRole("button", {
+    name: /KCC 789C/,
+  });
+  await selectedVehicle.click();
+  await page
+    .getByRole("group", { name: "Appearance" })
+    .first()
+    .getByRole("button", { name: "Dark theme" })
+    .click();
+
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(selectedVehicle).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("region", { name: "KCC 789C details" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Close menu" })).toHaveCount(0);
 });
 
 test("filters are kept in the address, and survive a reload", async ({ page }) => {
@@ -163,12 +182,11 @@ test("if the stream can't connect, the page says so and keeps working", async ({
   await expect(page.getByRole("button", { name: /KCA 123A/ })).toBeVisible();
 });
 
-test("if the map background can't load, the list still works", async ({ page }) => {
+test("if Geoapify isn't configured, the vehicle list still works", async ({ page }) => {
   await page.routeWebSocket(/tracking\/stream/, () => {});
   await stub(page);
-  await page.route("**/tiles.openfreemap.org/**", (route) => route.abort());
   await page.goto("/map");
-  await expect(page.getByText(/The map couldn.t load/)).toBeVisible();
+  await expect(page.getByText(/Geoapify is not configured/)).toBeVisible();
   await page.getByRole("button", { name: /KCA 123A/ }).click();
   await expect(page.getByRole("region", { name: "KCA 123A details" })).toBeVisible();
 });

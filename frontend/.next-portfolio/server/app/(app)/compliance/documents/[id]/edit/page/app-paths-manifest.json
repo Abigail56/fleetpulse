@@ -1,0 +1,3 @@
+{
+  "/(app)/compliance/documents/[id]/edit/page": "app/(app)/compliance/documents/[id]/edit/page.js"
+}

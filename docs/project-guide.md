@@ -16,14 +16,14 @@ All 23 planned phases (0 to 22) are built and tested on one development machine.
 |---|---|
 | Backend tests, unit and integration | 834 passed (109 + 725) |
 | Backend code covered by the integration tests (last measured in Phase 21) | 95% |
-| Frontend unit tests | 336 passed |
-| Browser tests against the real system (Chromium, phone, Firefox) | 415 passed, 3 skipped by design |
+| Frontend unit tests | 350 passed (local run, 11 November 2026) |
+| Browser tests (production frontend, Chromium, phone, Firefox) | 380 passed, 38 skipped (local run, 11 November 2026) |
 | Browser tests in development mode | 60 passed |
 | Production setup, checked locally with HTTPS | 4 of 4 journeys passed |
 | Backup, then restore into a new database | Restored data matched |
 | Known vulnerabilities in dependencies | 0 |
 
-**Nothing is saved in git yet.** All of this work exists only on this one computer. Commit it and push it to a private repository before anything else, because a disk failure would lose the whole project. CI has also never run, because it needs that first push.
+**A committed baseline is on GitHub, but this checkout has uncommitted changes.** Those local edits are not backed up remotely until they are reviewed, committed and pushed. The latest observed CI run passed the backend, deployment, frontend lint, type-check, unit-test and build steps, but failed in frontend browser E2E. The frontend unit and browser-test counts are local runs from 11 November 2026. Other results are from an earlier run. The browser suite skipped real-API journeys because `E2E_LIVE_API` was not enabled; these counts do not prove production operation.
 
 ---
 
@@ -88,6 +88,8 @@ It's multi-tenant: many organisations share one system, and none can see another
 2. In the same database transaction, FleetPulse checks whether the vehicle crossed a geofence, is speeding, or is moving with its ignition off.
 3. Anyone watching the live map gets the update through a WebSocket, within about a second. If that connection drops, the page says so and refreshes every 30 seconds.
 
+**When cellular service drops.** A tracker with local store-and-forward memory can keep recording GPS fixes and upload them when it reconnects. FleetPulse can add fixes up to 30 days old to route history; the live map cannot show a new location during the outage. Late fixes do not generate geofence crossings, and a backfilled old fix does not clear an offline alert. FleetPulse has not yet been tested with a real tracker.
+
 **A problem is noticed.** Alerts come from positions (geofences, speed, unusual movement), and from a check that runs every minute (silent vehicles, expiring documents, maintenance due). Every 30 seconds a job picks up new alerts, notifies the right people in the app, emails them if their preferences say so, and runs matching automation rules. A failed email retries up to 5 times, and the screen says if it finally failed.
 
 **A trip runs.** Trips move through draft, planned, dispatched, in progress and completed, and can be cancelled before completion. FleetPulse refuses to dispatch a vehicle in maintenance, a vehicle with a critical defect, a suspended driver or an expired licence. It checks again at departure, because any of those can change in between. When a trip finishes, distance is measured from GPS positions and labelled as GPS, simulated or typed in.
@@ -130,7 +132,7 @@ The product is built not to show anything it can't back up:
 
 | Area | Used |
 |---|---|
-| Web app | Next.js 16, React 19, TypeScript, Tailwind, DaisyUI, TanStack Query, MapLibre |
+| Web app | Next.js 16, React 19, TypeScript, Tailwind, DaisyUI, TanStack Query, MapLibre with Geoapify (tracking), MapLibre with OpenFreeMap (demo) |
 | API | Python 3.13, FastAPI, SQLModel, Alembic |
 | Data | PostgreSQL 17 with PostGIS, Redis, S3-compatible storage |
 | Background work | Celery |
@@ -228,7 +230,7 @@ No software is ever truly perfect. What will make FleetPulse complete and ready 
 
 | # | What | Why |
 |---|---|---|
-| 1 | **Tell me to commit and push to a private repository** | All the work is on one computer. This also runs CI for the first time, and CI may need fixes because it's never run. |
+| 1 | **Review, commit and push the current local changes to the project's remote** | The committed baseline is already on GitHub, but uncommitted changes are local-only. Re-run CI and resolve the browser E2E failure before relying on the result. |
 
 ## Needed to go live
 
@@ -259,9 +261,9 @@ No software is ever truly perfect. What will make FleetPulse complete and ready 
 
 | # | What you provide | Why |
 |---|---|---|
-| 12 | **Your company's legal name, address, contact email and governing law** | They appear on the Terms and Privacy pages, which show gaps until they're set |
-| 13 | **A lawyer's review of the Terms and Privacy pages.** I drafted them, but I'm not a lawyer. | Tracking vehicles can mean tracking people, so data protection law applies. Nigeria's NDPA and the EU's GDPR are examples, depending on where you operate. |
-| 14 | **A decision, with that lawyer, on how long to keep data.** Location history is kept for 13 months by default. Alerts and events have no limit yet. | I can build whatever you decide |
+| 12 | **Register or choose the operating entity, and confirm its legal name and address** | The Terms and Privacy pages cannot identify the operator until this exists |
+| 13 | **A qualified Nigerian lawyer's review of the Terms and Privacy pages** | Tracking can reveal where people are. Confirm the NDPA obligations and revisit the advice before expanding to other countries. |
+| 14 | **A retention policy, agreed with counsel** | Location history currently expires after 13 months; alerts, geofence events and audit logs have no automatic retention limit. Choose the shortest periods that meet operational and legal needs, then implement and test deletion before launch. |
 
 ## Optional, but worthwhile
 
@@ -271,7 +273,7 @@ No software is ever truly perfect. What will make FleetPulse complete and ready 
 | 16 | **Your brand assets:** logo, colours and final wording | Your identity instead of my placeholder design |
 | 17 | **An uptime monitor and error tracking account**, such as Sentry | Being told when something breaks, rather than hearing it from a customer |
 | 18 | **An independent security test** | A fresh set of eyes. My review can't replace one, and business customers may ask for it. |
-| 19 | **A decision on maps.** OpenFreeMap is free, with no uptime guarantee. | A paid map provider if reliability matters. It's a one-line setting. |
+| 19 | **A Geoapify Maps key** | Live tracking and trip-history maps. The marketing demonstration separately uses OpenFreeMap, a community service with no uptime guarantee. |
 | 20 | **Real users to try it** | The most valuable item here. Real fleets will find what no test can. |
 
 ## If you only do a few things
