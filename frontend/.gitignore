@@ -17,6 +17,7 @@
 /.next/
 /.next-e2e/
 /.next-dev/
+/.next-preview/
 /public/maplibre/
 /out/
 

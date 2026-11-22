@@ -88,6 +88,42 @@ The key is included in the frontend build, so changing it requires rebuilding th
 
 The public landing-page map is a separate, labelled demonstration using simulated data. It uses MapLibre when WebGL2 is available and an interactive Leaflet raster-map fallback otherwise; it does not show real customer or vehicle data.
 
+## Private portfolio preview with Tailscale
+
+To let recruiters in your tailnet view the running marketing site without publishing it to the
+public internet:
+
+1. Build and start the frontend from `frontend/` on port 3213:
+
+   ```bash
+   NEXT_DIST_DIR=.next-preview npm run build
+   NEXT_DIST_DIR=.next-preview npx next start -p 3213
+   ```
+
+   Keep this process running while the preview is in use.
+2. On the same machine, add a private HTTPS Serve endpoint:
+
+   ```bash
+   tailscale serve --bg --https=8444 http://127.0.0.1:3213
+   tailscale serve status
+   ```
+
+3. Share the displayed `https://<machine>.<tailnet>.ts.net:8444` address with a recruiter who has
+   been added to your tailnet, or share this device with them from the Tailscale admin console.
+
+On a phone, install the Tailscale app for iOS or Android, sign in to the same tailnet, and connect
+Tailscale before opening the address in Safari or Chrome. The phone must stay connected to Tailscale
+while viewing the preview; the address is not publicly accessible.
+
+Serve is tailnet-only; do not enable Funnel for this endpoint if you want to keep it private. The
+host machine and frontend process must remain online. The homepage's fleet preview uses simulated
+data and works without the backend; application workflows that require the API need the backend
+services running as well. If the Next.js build reports that the installed version is affected by
+a security vulnerability, upgrade Next.js before relying on the preview.
+
+To remove only this preview endpoint, run `tailscale serve --https=8444 off`. This does not change
+other Serve or Funnel endpoints on the machine.
+
 ## Local ports
 
 | Service | Port |
