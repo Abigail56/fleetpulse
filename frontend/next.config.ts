@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   // Browser tests build separately, so they can run beside a developer's `next dev`.
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
   // A self-contained server for the production image.
   output: process.env.NEXT_OUTPUT === "standalone" ? "standalone" : undefined,
   // The Content-Security-Policy is set in src/proxy.ts, because it needs a nonce per response.

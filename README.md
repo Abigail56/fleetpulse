@@ -88,41 +88,39 @@ The key is included in the frontend build, so changing it requires rebuilding th
 
 The public landing-page map is a separate, labelled demonstration using simulated data. It uses MapLibre when WebGL2 is available and an interactive Leaflet raster-map fallback otherwise; it does not show real customer or vehicle data.
 
-## Private portfolio preview with Tailscale
+## Portfolio preview with Tailscale Funnel
 
-To let recruiters in your tailnet view the running marketing site without publishing it to the
-public internet:
+To make the running marketing site available over HTTPS, including on phones that are not connected
+to your tailnet:
 
-1. Build and start the frontend from `frontend/` on port 3213:
+1. Build and start the frontend from `frontend/` on port 3213, with the preview's URL path:
 
    ```bash
-   NEXT_DIST_DIR=.next-preview npm run build
-   NEXT_DIST_DIR=.next-preview npx next start -p 3213
+   NEXT_PUBLIC_BASE_PATH=/fleetpulse-preview NEXT_DIST_DIR=.next-preview npm run build
+   NEXT_PUBLIC_BASE_PATH=/fleetpulse-preview NEXT_DIST_DIR=.next-preview npx next start -p 3213
    ```
 
    Keep this process running while the preview is in use.
-2. On the same machine, add a private HTTPS Serve endpoint:
+2. On the same machine, publish the preview under its own path on the supported HTTPS endpoint:
 
    ```bash
-   tailscale serve --bg --https=8444 http://127.0.0.1:3213
-   tailscale serve status
+   tailscale funnel --bg --https=443 --set-path=/fleetpulse-preview http://127.0.0.1:3213/fleetpulse-preview
+   tailscale funnel status
    ```
 
-3. Share the displayed `https://<machine>.<tailnet>.ts.net:8444` address with a recruiter who has
-   been added to your tailnet, or share this device with them from the Tailscale admin console.
+3. Share `https://<machine>.<tailnet>.ts.net/fleetpulse-preview/` with a recruiter. Tailscale does
+   not need to be installed on their device.
 
-On a phone, install the Tailscale app for iOS or Android, sign in to the same tailnet, and connect
-Tailscale before opening the address in Safari or Chrome. The phone must stay connected to Tailscale
-while viewing the preview; the address is not publicly accessible.
+Funnel makes this endpoint publicly accessible to anyone with the link. Do not use it for private
+or sensitive content. The host machine and frontend process must remain online. The homepage's
+fleet preview uses simulated data and works without the backend; application workflows that
+require the API need the backend services running as well. If the Next.js build reports that the
+installed version is affected by a security vulnerability, upgrade Next.js before relying on the
+preview.
 
-Serve is tailnet-only; do not enable Funnel for this endpoint if you want to keep it private. The
-host machine and frontend process must remain online. The homepage's fleet preview uses simulated
-data and works without the backend; application workflows that require the API need the backend
-services running as well. If the Next.js build reports that the installed version is affected by
-a security vulnerability, upgrade Next.js before relying on the preview.
-
-To remove only this preview endpoint, run `tailscale serve --https=8444 off`. This does not change
-other Serve or Funnel endpoints on the machine.
+To stop publishing only this preview path, run
+`tailscale funnel --https=443 --set-path=/fleetpulse-preview off`. This does not change other Serve
+or Funnel endpoints on the machine.
 
 ## Local ports
 

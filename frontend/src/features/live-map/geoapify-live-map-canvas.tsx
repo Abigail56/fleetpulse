@@ -20,7 +20,9 @@ import type { LatLng } from "../fleet-map/types";
 import type { LiveStatus, LiveVehicle } from "./fleet-status";
 import { LiveMapFallback } from "./live-map-fallback";
 
-maplibregl.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
+maplibregl.setWorkerUrl(
+  `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/maplibre/maplibre-gl-worker.mjs`,
+);
 
 const SELECTED_ZOOM = 14;
 const MAX_FIT_ZOOM = 13;

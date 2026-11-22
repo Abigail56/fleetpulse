@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next-portfolio/
 /.next-e2e/
 /.next-dev/
 /.next-preview/

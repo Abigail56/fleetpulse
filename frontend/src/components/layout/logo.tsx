@@ -8,7 +8,7 @@ export function Logo({ href = "/" }: { href?: string }) {
       className="inline-flex min-w-0 items-center gap-1.5 font-display text-base font-bold tracking-tight sm:gap-2 sm:text-lg md:gap-3 md:text-2xl"
     >
       <Image
-        src="/fleetpulse-mark.svg"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fleetpulse-mark.svg`}
         alt=""
         aria-hidden
         width={440}

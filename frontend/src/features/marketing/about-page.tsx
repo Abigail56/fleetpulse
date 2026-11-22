@@ -20,8 +20,9 @@ import {
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button";
 
-const HERO_IMAGE = "/images/about/fleet-on-road.jpg";
-const STORY_IMAGE = "/images/about/logistics-warehouse.jpg";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const HERO_IMAGE = `${BASE_PATH}/images/about/fleet-on-road.jpg`;
+const STORY_IMAGE = `${BASE_PATH}/images/about/logistics-warehouse.jpg`;
 
 const CAPABILITIES = [
   { icon: Truck, name: "Vehicle management", status: "Built in development app" },

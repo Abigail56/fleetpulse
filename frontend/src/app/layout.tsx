@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   description:
     "Fleet management software for monitoring vehicles, managing drivers and controlling operating costs from one platform.",
   icons: {
-    icon: "/fleetpulse-mark.svg",
-    shortcut: "/fleetpulse-mark.svg",
-    apple: "/fleetpulse-mark.png",
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fleetpulse-mark.svg`,
+    shortcut: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fleetpulse-mark.svg`,
+    apple: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fleetpulse-mark.png`,
   },
 };
 

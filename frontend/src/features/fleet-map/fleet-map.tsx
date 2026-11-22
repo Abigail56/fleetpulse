@@ -18,7 +18,9 @@ export { ROUTE_COLOURS } from "./colours";
 export const STYLE_URL = getFleetMapStyleUrl("light");
 
 // Copied to public/ by scripts/copy-map-worker.mjs when dependencies are installed.
-maplibregl.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
+maplibregl.setWorkerUrl(
+  `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/maplibre/maplibre-gl-worker.mjs`,
+);
 
 const POPUP_REFRESH_MS = 1000;
 const SELECTED_ZOOM = 13.5;

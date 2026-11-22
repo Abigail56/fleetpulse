@@ -7,10 +7,9 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
+    // Next.js build output, including custom distDir values.
     ".next/**",
-    ".next-e2e/**",
-    ".next-dev/**",
+    ".next-*/**",
     "public/maplibre/**",
     "out/**",
     "build/**",
