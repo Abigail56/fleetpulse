@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Activity,
   ArrowRight,
   BarChart3,
   ClipboardCheck,
@@ -13,7 +12,6 @@ import {
   LockKeyhole,
   MapPinned,
   Route,
-  ShieldCheck,
   Truck,
   UsersRound,
   Wrench,
@@ -24,34 +22,6 @@ import { ButtonLink } from "@/components/ui/button";
 
 const HERO_IMAGE = "/images/about/fleet-on-road.jpg";
 const STORY_IMAGE = "/images/about/logistics-warehouse.jpg";
-
-const VALUES = [
-  {
-    icon: MapPinned,
-    title: "Clarity in Every Journey",
-    body: "Better decisions begin with reliable information. We're building FleetPulse to provide meaningful insights without misleading numbers or inaccurate tracking data.",
-  },
-  {
-    icon: UsersRound,
-    title: "Built Around Real People",
-    body: "Technology should make work easier, not harder. From fleet managers and business owners to drivers and operations teams, we're designing FleetPulse around the people who keep businesses moving.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Trust Comes First",
-    body: "Your business deserves a platform that takes security and privacy seriously. Protecting your information and keeping your organisation's data separate are fundamental to how we're building FleetPulse.",
-  },
-  {
-    icon: Globe2,
-    title: "Designed Without Borders",
-    body: "Every business operates differently. FleetPulse is being designed to support different countries, currencies, time zones and operating environments.",
-  },
-  {
-    icon: Activity,
-    title: "Always Moving Forward",
-    body: "We believe there is always a better way to do things. We're committed to listening, learning and improving FleetPulse as the needs of businesses evolve.",
-  },
-];
 
 const CAPABILITIES = [
   { icon: Truck, name: "Vehicle management", status: "Built in development app" },
@@ -146,15 +116,20 @@ export function AboutPageContent() {
               id="about-title"
               className="mt-5 font-display text-4xl font-semibold leading-[1.08] tracking-[-0.05em] text-base-content sm:text-5xl lg:text-6xl"
             >
-              Moving Businesses Forward, One Journey at a Time.
+              Driving Smarter Operations. Powering Business Growth.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-8 text-base-content/75">
-              Behind every vehicle on the road is a business with somewhere to go, a driver with a
-              responsibility and a team working to make every journey successful.
+              Every vehicle is a valuable asset. Every journey contributes to business performance.
+              Every operational decision matters.
             </p>
             <p className="mt-4 max-w-xl text-lg leading-8 text-base-content/75">
-              FleetPulse is being built to simplify fleet management, connect operations and give
-              businesses the confidence to keep moving forward.
+              FleetPulse is an innovative fleet management platform designed to transform how
+              businesses monitor, manage, and optimize their fleet operations.
+            </p>
+            <p className="mt-4 max-w-xl text-lg leading-8 text-base-content/75">
+              Built with a focus on efficiency, reliability, and scalability, FleetPulse brings
+              vehicle tracking, fleet monitoring, driver management, intelligent alerts, and
+              operational analytics together in one centralized platform.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/features" size="lg" className="gap-2">
@@ -202,29 +177,23 @@ export function AboutPageContent() {
             />
           </figure>
           <div className="order-1 lg:order-2">
-            <Eyebrow>Our story</Eyebrow>
+            <Eyebrow>About FleetPulse</Eyebrow>
             <h2
               id="story-title"
               className="mt-4 font-display text-3xl font-semibold leading-tight tracking-[-0.035em] text-base-content sm:text-4xl"
             >
-              Built for the Road. Designed for the People Behind It.
+              Connecting People, Assets, and Operations
             </h2>
             <div className="mt-6 space-y-4 text-base leading-7 text-base-content/75 sm:text-lg sm:leading-8">
               <p>
-                Managing a fleet isn&apos;t always straightforward. Between rising fuel costs,
-                unexpected breakdowns, driver coordination and scattered records, keeping
-                everything under control can become overwhelming.
-              </p>
-              <p className="font-semibold text-base-content">That&apos;s why we&apos;re building FleetPulse.</p>
-              <p>
-                We believe fleet management should be simpler, more connected and less stressful.
-                By bringing vehicles, drivers, journeys, maintenance and operating costs together,
-                FleetPulse is designed to give businesses the visibility and confidence they need
-                to manage their operations.
+                Our goal is to eliminate operational complexities, improve fleet visibility, and
+                equip businesses with the insights and tools needed to make informed decisions,
+                maximize productivity, and achieve sustainable growth.
               </p>
               <p>
-                Our goal is to help businesses spend less time managing complexity and more time
-                moving forward.
+                At FleetPulse, we believe effective fleet management goes beyond tracking vehicles.
+                It is about connecting people, assets, and operations through technology that
+                delivers measurable business value.
               </p>
             </div>
           </div>
@@ -239,14 +208,17 @@ export function AboutPageContent() {
             </div>
             <Eyebrow>Our Mission</Eyebrow>
             <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-base-content sm:text-3xl">
-              Make fleet operations easier to run.
+              To simplify fleet operations through intelligent, reliable, and accessible technology.
             </h2>
             <p className="mt-4 text-base leading-7 text-base-content/75">
-              To simplify fleet operations and empower businesses to make better decisions, reduce
-              unnecessary costs and build safer, more reliable transportation operations.
+              We are committed to empowering businesses with real-time visibility, actionable
+              insights, and streamlined management tools that enhance operational efficiency,
+              strengthen accountability, reduce unnecessary costs, and support informed
+              decision-making.
             </p>
             <p className="mt-5 border-l-2 border-primary pl-4 text-sm font-medium leading-6 text-base-content/85">
-              We believe managing a fleet should never be more complicated than the journey itself.
+              Our mission is to make fleet management smarter, more connected, and more effective
+              for businesses of all sizes.
             </p>
           </article>
           <article className="bg-base-100 p-7 sm:p-10 lg:p-12">
@@ -255,12 +227,17 @@ export function AboutPageContent() {
             </div>
             <Eyebrow>Our Vision</Eyebrow>
             <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-base-content sm:text-3xl">
-              Confidence on every road ahead.
+              To become a trusted leader in intelligent fleet management, transforming how
+              businesses move, operate, and grow.
             </h2>
             <p className="mt-4 text-base leading-7 text-base-content/75">
-              A future where businesses of every size can manage their fleets with confidence,
-              where every vehicle is accounted for, every journey matters and technology makes
-              transportation more efficient, reliable and sustainable.
+              We envision a future where fleet operations are seamlessly connected, data-driven,
+              and optimized for efficiency, safety, and sustainability.
+            </p>
+            <p className="mt-4 text-base leading-7 text-base-content/75">
+              Through continuous innovation and a commitment to operational excellence, FleetPulse
+              aspires to set new standards for fleet intelligence and empower businesses to
+              navigate the future of mobility with confidence.
             </p>
           </article>
         </Container>
@@ -270,31 +247,15 @@ export function AboutPageContent() {
         <Container>
           <SectionHeading
             id="values-title"
-            eyebrow="Our values"
-            title="What Drives Us"
-            description="The principles behind every decision we make and every feature we build."
+            eyebrow="Our Commitment"
+            title="Smarter Fleets. Stronger Businesses. Better Journeys."
+            description="We are building FleetPulse with a clear commitment to innovation, reliability, transparency, and customer-focused solutions."
             centered
           />
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {VALUES.map(({ icon: Icon, title, body }, index) => (
-              <article
-                key={title}
-                className={`group border border-base-300 bg-base-100 p-6 transition duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-base-content/5 motion-reduce:transition-none ${
-                  index === 3 ? "lg:col-start-1" : ""
-                }`}
-              >
-                <div className="flex size-10 items-center justify-center bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-content">
-                  <Icon aria-hidden className="size-5" />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-base-content">
-                  {title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-base-content/75 sm:text-base sm:leading-7">
-                  {body}
-                </p>
-              </article>
-            ))}
-          </div>
+          <p className="mx-auto mt-8 max-w-3xl text-center text-base leading-7 text-base-content/75 sm:text-lg sm:leading-8">
+            Our ambition is to help businesses turn everyday fleet challenges into opportunities
+            for greater efficiency, stronger performance, and sustainable growth.
+          </p>
         </Container>
       </section>
 

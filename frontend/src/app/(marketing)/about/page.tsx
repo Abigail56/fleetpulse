@@ -5,11 +5,11 @@ import { AboutPageContent } from "@/features/marketing/about-page";
 export const metadata: Metadata = {
   title: "About FleetPulse",
   description:
-    "Discover why we're building FleetPulse: clearer fleet operations, connected teams and greater confidence on every journey.",
+    "Learn about FleetPulse, our mission to simplify fleet operations, and our vision for intelligent fleet management.",
   openGraph: {
     title: "About FleetPulse",
     description:
-      "A fleet platform in development, built around the vehicles, drivers and teams that keep businesses moving.",
+      "Driving smarter operations and powering business growth through intelligent fleet management.",
     type: "website",
   },
 };

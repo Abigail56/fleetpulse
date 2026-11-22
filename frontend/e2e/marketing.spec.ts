@@ -12,7 +12,7 @@ const PAGES = [
   { path: "/features", heading: "Everything a fleet operation runs on" },
   { path: "/solutions", heading: "Built for fleets of many kinds" },
   { path: "/pricing", heading: "Simple pricing per vehicle" },
-  { path: "/about", heading: "Moving Businesses Forward, One Journey at a Time." },
+  { path: "/about", heading: "Driving Smarter Operations. Powering Business Growth." },
   { path: "/contact", heading: "Talk to us" },
   { path: "/terms", heading: "Terms and Conditions" },
   { path: "/privacy", heading: "Privacy Policy" },
