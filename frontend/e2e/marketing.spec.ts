@@ -177,7 +177,9 @@ test("the About page connects its calls to action and security information", asy
     "href",
     "/contact",
   );
-  await expect(page.getByRole("heading", { name: "What Drives Us" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Connecting People, Assets, and Operations" }),
+  ).toBeVisible();
   await expect(page.locator("#security")).toBeVisible();
   await expect(
     page.getByRole("navigation", { name: "Trust & Legal" }).getByRole("link", {

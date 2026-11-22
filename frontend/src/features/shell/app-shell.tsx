@@ -261,6 +261,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <aside
         id="app-sidebar"
         aria-label="Application"
+        data-theme="dark"
         className={cn(
           "flex-col gap-6 border-b border-white/10 bg-[#0b1220] p-4 text-slate-100 md:sticky md:top-0 md:flex md:h-screen md:w-64 md:shrink-0 md:border-r md:border-b-0",
           open ? "flex" : "hidden",
@@ -307,12 +308,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <ThemeControl />
           </div>
           {user.data && (
-            <div className="min-w-0 text-sm">
+            <div className="min-w-0 bg-[#0b1220] text-sm">
               <p className="truncate font-medium">{user.data.full_name}</p>
               <p className="truncate text-xs opacity-70">{user.data.email}</p>
             </div>
           )}
-          <Button variant="outline" disabled={signOut.isPending} onClick={() => signOut.mutate()}>
+          <Button
+            variant="outline"
+            className="bg-[#0b1220] text-slate-100"
+            disabled={signOut.isPending}
+            onClick={() => signOut.mutate()}
+          >
             Sign out
           </Button>
         </div>

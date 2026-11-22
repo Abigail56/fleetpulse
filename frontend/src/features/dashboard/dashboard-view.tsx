@@ -46,25 +46,23 @@ function Tile({
 }) {
   const content = (
     <>
-      <div className="flex items-start justify-between gap-3">
-        <dt className="text-sm font-medium text-base-content/70">{label}</dt>
+      <dt className="flex items-start justify-between gap-3 text-sm font-medium text-base-content/70">
+        <span>{label}</span>
         <span className={`grid size-9 place-items-center rounded-field ${accent}`}>
           <Icon aria-hidden className="size-[18px]" />
         </span>
-      </div>
+      </dt>
       <dd className="mt-3 font-metric text-3xl font-semibold tracking-tight tabular-nums sm:text-4xl">
         {value}
       </dd>
-      {note && <dd className="mt-1 text-xs text-base-content/65">{note}</dd>}
+      {note && (
+        <dd className="mt-1 text-xs text-base-content/65">{note}</dd>
+      )}
     </>
   );
   const className = `group relative min-h-36 overflow-hidden rounded-box border border-base-300 border-t-4 bg-base-100 p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10 motion-reduce:transition-none ${frame}`;
 
-  const card = (
-    <dl>
-      <div>{content}</div>
-    </dl>
-  );
+  const card = <dl>{content}</dl>;
 
   if (href) {
     return (
@@ -286,7 +284,7 @@ function Figures({
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-base-content/55">
+        <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-base-content/75">
           Fleet overview
         </h2>
         <section

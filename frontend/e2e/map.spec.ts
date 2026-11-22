@@ -81,8 +81,8 @@ for (const scheme of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme: scheme });
     await page.goto("/map");
     await expect(page.getByText("Live", { exact: true })).toBeVisible();
-    await expect(page.getByText(/Geoapify is not configured/)).toBeVisible();
-    await page.getByRole("button", { name: /KCC 789C/ }).click();
+    await expect(page.getByRole("region", { name: /map/i }).first()).toBeVisible();
+    await page.getByRole("list", { name: "Vehicles" }).getByRole("button", { name: /KCC 789C/ }).click();
     await expect(page.getByText(/may have moved since/)).toBeVisible();
     const results = await new AxeBuilder({ page }).analyze();
     const summary = results.violations.flatMap((item) =>
@@ -182,12 +182,12 @@ test("if the stream can't connect, the page says so and keeps working", async ({
   await expect(page.getByRole("button", { name: /KCA 123A/ })).toBeVisible();
 });
 
-test("if Geoapify isn't configured, the vehicle list still works", async ({ page }) => {
+test("if Geoapify isn't configured, the map and vehicle list still work", async ({ page }) => {
   await page.routeWebSocket(/tracking\/stream/, () => {});
   await stub(page);
   await page.goto("/map");
-  await expect(page.getByText(/Geoapify is not configured/)).toBeVisible();
-  await page.getByRole("button", { name: /KCA 123A/ }).click();
+  await expect(page.getByRole("region", { name: /map/i }).first()).toBeVisible();
+  await page.getByRole("list", { name: "Vehicles" }).getByRole("button", { name: /KCA 123A/ }).click();
   await expect(page.getByRole("region", { name: "KCA 123A details" })).toBeVisible();
 });
 

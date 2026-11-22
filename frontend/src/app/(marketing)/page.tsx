@@ -103,7 +103,7 @@ export default function HomePage() {
                 <h3 className="mt-3 text-xl font-semibold">{group.title}</h3>
                 <div>
                   <p className="mt-2 text-sm leading-6 text-base-content/80">{group.summary}</p>
-                  <p className="mt-3 text-xs leading-5 text-base-content/60">
+                  <p className="mt-3 text-xs leading-5 text-base-content/80">
                     {group.items.map((item) => item.title).join(" · ")}
                   </p>
                   <Link
@@ -153,7 +153,7 @@ export default function HomePage() {
               <li
                 key={title}
                 className={`rounded-full border px-4 py-2 text-sm font-medium ${
-                  ["border-primary/30 bg-primary/10 text-primary", "border-secondary/30 bg-secondary/10 text-secondary", "border-accent/50 bg-accent/25 text-base-content"][index % 3]
+                  ["border-primary/30 bg-primary/10 text-[#075e5a] dark:text-[#36c4b8]", "border-secondary/30 bg-secondary/10 text-secondary", "border-accent/50 bg-accent/25 text-base-content"][index % 3]
                 }`}
               >
                 {title}
